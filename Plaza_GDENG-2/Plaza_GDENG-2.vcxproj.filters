@@ -40,6 +40,9 @@
     <Filter Include="GameEngine\EngineTime">
       <UniqueIdentifier>{2b2644c0-59a2-4385-9885-71de7a135f45}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\InputSystem">
+      <UniqueIdentifier>{bdaa7326-d44a-47f1-b7ec-a21f256a6b7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="EngineTime.cpp">
       <Filter>GameEngine\EngineTime</Filter>
+    </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>GameEngine\InputSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +124,9 @@
     </ClInclude>
     <ClInclude Include="EngineTime.h">
       <Filter>GameEngine\EngineTime</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h">
+      <Filter>GameEngine\InputSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

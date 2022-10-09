@@ -9,6 +9,8 @@
 #include "PixelShader.h"
 #include "Quad.h"
 #include "EngineTime.h"
+#include "InputSystem.h"
+#include <iostream>
 
 class AppWindow: public Window
 {
@@ -21,6 +23,11 @@ public:
 	virtual void onUpdate() override;
 	virtual void onDestroy() override;
 private:
+	float scaleX = 0.5f;
+	float scaleY = 0.5f;
+	float x = 0.0f;
+	float y = 0.0f;
+	InputSystem is;
 	SwapChain* m_swap_chain;
 	VertexBuffer* m_vb;
 	VertexShader* m_vs;

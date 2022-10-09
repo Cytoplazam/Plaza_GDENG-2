@@ -1,8 +1,12 @@
-﻿  Quad.cpp
-C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Quad.cpp(87,75): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
-C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Quad.cpp(112,17): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Quad.cpp(113,20): warning C4244: '=': conversion from 'double' to 'unsigned int', possible loss of data
-C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Quad.cpp(119,17): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Quad.cpp(120,20): warning C4244: '=': conversion from 'double' to 'unsigned int', possible loss of data
-C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Quad.cpp(125,18): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+﻿  AppWindow.cpp
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\AppWindow.h(36,8): warning C4200: nonstandard extension used: zero-sized array in struct/union
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\AppWindow.h(36,8): message : This member will be ignored by a defaulted constructor or copy/move assignment operator
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\AppWindow.cpp(117,14): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\AppWindow.cpp(118,15): warning C4244: 'initializing': conversion from 'LONG' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\AppWindow.cpp(120,77): warning C4244: 'argument': conversion from 'float' to 'UINT', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\AppWindow.cpp(120,70): warning C4244: 'argument': conversion from 'float' to 'UINT', possible loss of data
+  main.cpp
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\AppWindow.h(36,8): warning C4200: nonstandard extension used: zero-sized array in struct/union
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\AppWindow.h(36,8): message : This member will be ignored by a defaulted constructor or copy/move assignment operator
+  Generating Code...
   Plaza_GDENG-2.vcxproj -> C:\Users\CYTO\source\repos\Plaza_GDENG-2\x64\Debug\Plaza_GDENG-2.exe

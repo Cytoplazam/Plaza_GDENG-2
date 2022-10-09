@@ -32,7 +32,7 @@ VS_OUTPUT vsmain(VS_INPUT input)
 	//Screen space
 	output.position = mul(output.position, m_proj);
 	//output.position = input.position;
-	output.position = lerp(input.position, input.position1, (sin(m_time / 1000.0f) + 1.0f) / 2.0f);
+	//output.position = lerp(input.position, input.position1, (sin(m_time / 1000.0f) + 1.0f) / 2.0f);
 	output.color = input.color;
 	output.color1 = input.color1;
 	return output;

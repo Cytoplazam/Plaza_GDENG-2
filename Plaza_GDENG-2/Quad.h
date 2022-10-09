@@ -15,8 +15,8 @@ class Quad
 public:
 	Quad();
 
-	void updateQuadPosition(float x, float y, float z, float width, float height);
-	void draw(float x, float y, float z, float width, float height);
+	void updateQuadPosition(float x, float y, float z, float width, float height, float sX, float sY);
+	void draw(float x, float y, float z, float width, float height, float sX, float sY);
 
 	~Quad();
 private:

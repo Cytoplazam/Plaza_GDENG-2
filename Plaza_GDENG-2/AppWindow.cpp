@@ -119,9 +119,26 @@ void AppWindow::onUpdate()
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(width, height);
 	
-	quad[1]->draw(0, 0, 0, width / 400.0f, height / 400.0f);
+	quad[1]->draw(x, y, 0, width / 400.0f, height / 400.0f, scaleX, scaleY);
 	//quad[2]->draw(0.5, 0.5, 0, width / 400.0f, height / 400.0f);
 	//quad[3]->draw(-0.5, -0.5, 0, width / 400.0f, height / 400.0f);
+	
+	if (GetKeyState('W') & 0x8000)
+		y = is.translateYP(y);
+	if (GetKeyState('S') & 0x8000)
+		y = is.translateYN(y);
+	if (GetKeyState('D') & 0x8000)
+		x = is.translateXP(x);
+	if (GetKeyState('A') & 0x8000)
+		x = is.translateXN(x);
+	if (GetKeyState('E') & 0x8000)
+		scaleX = is.scaleXN(scaleX);
+	if (GetKeyState('R') & 0x8000)
+		scaleX = is.scaleXP(scaleX);
+	if (GetKeyState('T') & 0x8000)
+		scaleY = is.scaleYN(scaleY);
+	if (GetKeyState('Y') & 0x8000)
+		scaleY = is.scaleYP(scaleY);
 
 	/*constant cc;
 	cc.m_time = ::GetTickCount	();

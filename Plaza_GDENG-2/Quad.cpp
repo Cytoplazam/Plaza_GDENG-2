@@ -33,11 +33,11 @@ Quad::Quad()
 
 		//RAINBOW RECTANGLE
 		//Triangle List 
-		/*
+		
 		{Vector3D(-0.5f, -0.5f, 0.0f),  Vector3D(-0.32f, -0.11f, 0.0f),   Vector3D(0, 0, 0),   Vector3D(0, 1, 0)},
 		{Vector3D(-0.5f, 0.5f, 0.0f),   Vector3D(-0.11f, 0.78f, 0.0f),    Vector3D(1, 1, 0),   Vector3D(0, 1, 1)},
 		{Vector3D(0.5f, -0.5f, 0.0f),   Vector3D(0.75f, -0.73f, 0.0f),    Vector3D(0, 0, 1),   Vector3D(1, 0, 0)},
-		{Vector3D(0.5f, 0.5f, 0.0f),    Vector3D(0.88f, 0.7f, 0.0f),      Vector3D(1, 1, 1),   Vector3D(0, 0, 1)}*/
+		{Vector3D(0.5f, 0.5f, 0.0f),    Vector3D(0.88f, 0.7f, 0.0f),      Vector3D(1, 1, 1),   Vector3D(0, 0, 1)}
 
 		// Slide 13	
 		/*
@@ -47,11 +47,11 @@ Quad::Quad()
 		{Vector3D(0.1f, 0.2f, 0.0f),    Vector3D(0.88f, 0.7f, 0.0f),      Vector3D(1, 1, 1),   Vector3D(0, 0, 1)}*/
 
 		// Slide 14
-		
+		/*
 		{Vector3D(-0.6f, -0.8f, 0.0f),  Vector3D(-0.2f, -0.1f, 0.0f),   Vector3D(0, 0, 0),   Vector3D(0, 1, 0)},
 		{Vector3D(-0.8f, 0.2f, 0.0f),   Vector3D(0.0f, 0.8f, 0.0f),    Vector3D(1, 1, 0),   Vector3D(0, 1, 1)},
 		{Vector3D(0.9f, -0.2f, 0.0f),   Vector3D(0.1f, -0.7f, 0.0f),    Vector3D(0, 0, 1),   Vector3D(1, 0, 0)},
-		{Vector3D(-0.6f, -0.8f, 0.0f),    Vector3D(0.8f, 0.8f, 0.0f),      Vector3D(1, 1, 1),   Vector3D(0, 0, 1)}
+		{Vector3D(-0.6f, -0.8f, 0.0f),    Vector3D(0.8f, 0.8f, 0.0f),      Vector3D(1, 1, 1),   Vector3D(0, 0, 1)}*/
 
 		//GREEN RECTANGLE
 		//Triangle List 
@@ -102,7 +102,7 @@ Quad::Quad()
 	m_cb->load(&cc, sizeof(constant));
 }
 
-void Quad::updateQuadPosition(float x, float y, float z, float width, float height)
+void Quad::updateQuadPosition(float x, float y, float z, float width, float height, float sX, float sY)
 {
 	constant cc;
 
@@ -126,7 +126,7 @@ void Quad::updateQuadPosition(float x, float y, float z, float width, float heig
 		}
 	}
 
-	std::cout << time << "\n";
+	//std::cout << time << "\n";
 
 	m_delta_pos += (m_delta_time / 10.0f);
 
@@ -140,7 +140,7 @@ void Quad::updateQuadPosition(float x, float y, float z, float width, float heig
 	//cc.m_world.setScale(Vector3D::lerp(Vector3D(0.5, 0.5, 0.0), Vector3D(2, 2, 0), (sin(m_delta_scale) + 1.0f) / 2.0f));
 	//temp.setTranslation(Vector3D::lerp(Vector3D(x, y, z), Vector3D(1.5f, 1.5f, 0.0f), m_delta_pos));
 	temp.setTranslation(Vector3D(x, y, x));
-	cc.m_world.setScale(Vector3D(0.5, 0.5, 0.5));
+	cc.m_world.setScale(Vector3D(sX, sY, 0.5));
 	cc.m_world *= temp;
 
 	cc.m_view.setIdentity();
@@ -149,9 +149,9 @@ void Quad::updateQuadPosition(float x, float y, float z, float width, float heig
 	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
 }
 
-void Quad::draw(float x, float y, float z, float width, float height)
+void Quad::draw(float x, float y, float z, float width, float height, float sX, float sY)
 {
-	updateQuadPosition(x, y, z, width, height);
+	updateQuadPosition(x, y, z, width, height, sX, sY);
 	/*Matrix4x4 temp;
 	constant cc;
 	cc.m_time = ::GetTickCount();
