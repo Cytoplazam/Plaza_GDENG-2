@@ -8,6 +8,22 @@ public:
 	Matrix4x4()
 	{
 	}
+	
+	Matrix4x4 multiplyMatrix(Matrix4x4 m)
+	{
+		Matrix4x4 out;
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 4; j++)
+			{
+				out.m_mat[i][j] =
+					m_mat[i][0] * m.m_mat[0][j] + m_mat[i][1] * m.m_mat[1][j] +
+					m_mat[i][2] * m.m_mat[2][j] + m_mat[i][3] * m.m_mat[3][j];
+			}
+		}
+
+		return out;
+	}
 
 	void setIdentity()
 	{
@@ -32,6 +48,30 @@ public:
 		m_mat[0][0] = scale.m_x;
 		m_mat[1][1] = scale.m_y;
 		m_mat[2][2] = scale.m_z;
+	}
+
+	void setRotationX(float x)
+	{
+		m_mat[1][1] = cos(x);
+		m_mat[1][2] = sin(x);
+		m_mat[2][1] = -sin(x);
+		m_mat[2][2] = cos(x);
+	}
+
+	void setRotationY(float y)
+	{
+		m_mat[0][0] = cos(y);
+		m_mat[0][2] = -sin(y);
+		m_mat[2][0] = sin(y);
+		m_mat[2][2] = cos(y);
+	}
+
+	void setRotationZ(float z)
+	{
+		m_mat[0][0] = cos(z);
+		m_mat[0][1] = sin(z);
+		m_mat[1][0] = -sin(z);
+		m_mat[1][1] = cos(z);
 	}
 
 	void operator *= (const Matrix4x4& matrix)

@@ -8,9 +8,11 @@
 #include "VertexShader.h"
 #include "PixelShader.h"
 #include "Quad.h"
+#include "Cube.h"
 #include "EngineTime.h"
 #include "InputSystem.h"
 #include <iostream>
+#include <vector>
 
 class AppWindow: public Window
 {
@@ -27,12 +29,15 @@ private:
 	float scaleY = 0.5f;
 	float x = 0.0f;
 	float y = 0.0f;
+	float ticks = 0.0f;
+	std::vector<Cube*> cubes;
 	InputSystem is;
 	SwapChain* m_swap_chain;
 	VertexBuffer* m_vb;
 	VertexShader* m_vs;
 	PixelShader* m_ps;
 	ConstantBuffer* m_cb;
+	Cube* cube;
 	Quad* quad[];
 };
 

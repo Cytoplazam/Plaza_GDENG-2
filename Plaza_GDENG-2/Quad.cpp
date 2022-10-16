@@ -8,7 +8,7 @@
 struct vertex
 {
 	Vector3D position;
-	Vector3D position1;
+	//Vector3D position1;
 	Vector3D color;
 	Vector3D color1;
 };
@@ -24,8 +24,19 @@ struct constant
 
 Quad::Quad()
 {
-	vertex list[] =
+	vertex vertex_list[] =
 	{
+		//Front
+		{Vector3D(-0.5f, -0.5f, -0.5f),  Vector3D(1, 0, 0),   Vector3D(0.2f, 0, 0)},
+		{Vector3D(-0.5f, 0.5f, -0.5f),   Vector3D(1, 1, 0),   Vector3D(0.2f, 0.2f, 0)},
+		{Vector3D(0.5f, 0.5f, -0.5f),    Vector3D(1, 1, 1),   Vector3D(0.2f, 0.2f, 0)},
+		{Vector3D(0.5f, -0.5f, -0.5f),   Vector3D(1, 0, 0),   Vector3D(0.2f, 0, 0)},
+		//Back
+		{Vector3D(0.5f, -0.5f, 0.5f),    Vector3D(0, 1, 0),   Vector3D(0, 0.2f, 0)},
+		{Vector3D(0.5f, 0.5f, 0.5f),     Vector3D(0, 1, 1),   Vector3D(0, 0.2f, 0.2f)},
+		{Vector3D(-0.5f, 0.5f, 0.5f),    Vector3D(0, 1, 1),   Vector3D(1, 0.2f, 0.2f)},
+		{Vector3D(-0.5f, -0.5f, 0.5f),   Vector3D(0, 1, 0),   Vector3D(0, 0.2f, 0)}
+
 		//RAINBOW TRIANGLE
 		//{-0.5f, -0.5f, 0.0f, 1, 0, 0},
 		//{0.0f, 0.5f, 0.0f, 0, 1, 0},
@@ -33,11 +44,11 @@ Quad::Quad()
 
 		//RAINBOW RECTANGLE
 		//Triangle List 
-		
+		/*
 		{Vector3D(-0.5f, -0.5f, 0.0f),  Vector3D(-0.32f, -0.11f, 0.0f),   Vector3D(0, 0, 0),   Vector3D(0, 1, 0)},
 		{Vector3D(-0.5f, 0.5f, 0.0f),   Vector3D(-0.11f, 0.78f, 0.0f),    Vector3D(1, 1, 0),   Vector3D(0, 1, 1)},
 		{Vector3D(0.5f, -0.5f, 0.0f),   Vector3D(0.75f, -0.73f, 0.0f),    Vector3D(0, 0, 1),   Vector3D(1, 0, 0)},
-		{Vector3D(0.5f, 0.5f, 0.0f),    Vector3D(0.88f, 0.7f, 0.0f),      Vector3D(1, 1, 1),   Vector3D(0, 0, 1)}
+		{Vector3D(0.5f, 0.5f, 0.0f),    Vector3D(0.88f, 0.7f, 0.0f),      Vector3D(1, 1, 1),   Vector3D(0, 0, 1)}*/
 
 		// Slide 13	
 		/*
@@ -71,7 +82,34 @@ Quad::Quad()
 	};
 
 	m_vb = GraphicsEngine::get()->createVertexBuffer();
-	UINT size_list = ARRAYSIZE(list);
+	UINT size_list = ARRAYSIZE(vertex_list);
+
+	unsigned int index_list[] =
+	{
+		//Front
+		0, 1, 2, //First triangle
+		2, 3, 0, 
+		//back
+		4, 5, 6,
+		6, 7, 4,
+		//top
+		1, 6, 5,
+		5, 2, 1,
+		//bottom
+		7, 0, 3,
+		3, 4, 7,
+		//right
+		3, 2, 5,
+		5, 4, 3,
+		//left
+		7, 6, 1,
+		1, 0, 7
+	};
+
+	m_ib = GraphicsEngine::get()->createIndexBuffer();
+	UINT size_index_list = ARRAYSIZE(index_list);
+
+	m_ib->load(index_list, size_index_list);
 
 	//GraphicsEngine::get()->createShaders();
 
@@ -84,7 +122,7 @@ Quad::Quad()
 
 	//GraphicsEngine::get()->getShaderBufferAndSize(&shader_byte_code, &size_shader);
 
-	m_vb->load(list, sizeof(vertex), size_list, shader_byte_code, size_shader);
+	m_vb->load(vertex_list, sizeof(vertex), size_list, shader_byte_code, size_shader);
 
 	GraphicsEngine::get()->releaseCompiledShader();
 
@@ -106,7 +144,10 @@ void Quad::updateQuadPosition(float x, float y, float z, float width, float heig
 {
 	constant cc;
 
-	if (time < 10 && time >= 0 && increasing)
+	cc.m_time = ::GetTickCount();
+
+
+	/*if (time < 10 && time >= 0 && increasing)
 	{
 		time += EngineTime::getDeltaTime();
 		ticks += time * 1.0f;
@@ -124,7 +165,7 @@ void Quad::updateQuadPosition(float x, float y, float z, float width, float heig
 			time += EngineTime::getDeltaTime();
 			ticks += time * 1.0f;
 		}
-	}
+	}*/
 
 	//std::cout << time << "\n";
 
@@ -135,13 +176,30 @@ void Quad::updateQuadPosition(float x, float y, float z, float width, float heig
 
 	Matrix4x4 temp;
 
-	m_delta_scale += m_delta_time / 0.15f;
+	//m_delta_scale += m_delta_time / 0.55f;
 
 	//cc.m_world.setScale(Vector3D::lerp(Vector3D(0.5, 0.5, 0.0), Vector3D(2, 2, 0), (sin(m_delta_scale) + 1.0f) / 2.0f));
 	//temp.setTranslation(Vector3D::lerp(Vector3D(x, y, z), Vector3D(1.5f, 1.5f, 0.0f), m_delta_pos));
-	temp.setTranslation(Vector3D(x, y, x));
-	cc.m_world.setScale(Vector3D(sX, sY, 0.5));
+	//temp.setTranslation(Vector3D(x, y, x));
+	//cc.m_world.setScale(Vector3D(sX, sY, 0.5));
+	//cc.m_world *= temp;
+
+	cc.m_world.setScale(Vector3D(1, 1, 1));
+
+	temp.setIdentity();
+	temp.setRotationZ(m_delta_scale);
 	cc.m_world *= temp;
+
+	temp.setIdentity();
+	temp.setRotationY(m_delta_scale);
+	cc.m_world *= temp;
+
+	temp.setIdentity();
+	temp.setRotationX(m_delta_scale);
+
+	temp.multiplyMatrix(temp);
+	cc.m_world *= temp;
+
 
 	cc.m_view.setIdentity();
 	cc.m_projection.setOrthoLH(width, height, -4.0f, 4.0f);
@@ -173,18 +231,22 @@ void Quad::draw(float x, float y, float z, float width, float height, float sX, 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(m_ps);
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setIndexBuffer(m_ib);
 
 	//GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleList(m_vb->getSizeVertexList(), 0);
-	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(m_vb->getSizeVertexList(), 0);
+	//GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(m_vb->getSizeVertexList(), 0);
+	GraphicsEngine::get()->getImmediateDeviceContext()->drawIndexedTriangleList(m_ib->getSizeIndexList(), 0, 0);
 
-	//m_old_delta = m_new_delta;
-	//m_new_delta = ::GetTickCount();
-	//m_delta_time = (m_old_delta) ? ((m_new_delta - m_old_delta) / 1000.0f) : 0;
+	m_old_delta = m_new_delta;
+	m_new_delta = ::GetTickCount();
+	m_delta_time = (m_old_delta) ? ((m_new_delta - m_old_delta) / 1000.0f) : 0;
 }
 
 Quad::~Quad()
 {
 	m_vb->release();
+	m_ib->release();
+	m_cb->release();
 	m_vs->release();
 	m_ps->release();
 }

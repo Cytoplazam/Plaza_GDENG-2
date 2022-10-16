@@ -26,6 +26,16 @@ public:
 		return v;
 	}
 
+	static Vector3D zeros()
+	{
+		return Vector3D(0, 0, 0);
+	}
+
+	static Vector3D ones()
+	{
+		return Vector3D(1, 1, 1);
+	}
+
 	~Vector3D()
 	{
 	}

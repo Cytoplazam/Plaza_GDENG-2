@@ -4,6 +4,7 @@
 class SwapChain;
 class VertexBuffer;
 class VertexShader;
+class IndexBuffer;
 class PixelShader;
 class ConstantBuffer;
 
@@ -16,7 +17,11 @@ public:
 
 	void setVertexBuffer(VertexBuffer* vertex_buffer);
 
+	void setIndexBuffer(IndexBuffer* index_buffer);
+
 	void drawTriangleList(UINT vertex_count, UINT start_vertex_index);
+
+	void drawIndexedTriangleList(UINT index_count, UINT start_vertex_index, UINT start_index_location);
 
 	void drawTriangleStrip(UINT vertex_count, UINT start_vertex_index);
 
