@@ -94,7 +94,7 @@ void AppWindow::onCreate()
 	//m_vb->load(list, sizeof(vertex), size_list, shader_byte_code, size_shader);
 
 	srand(time(NULL));
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		float x = float(rand()) / float(RAND_MAX) * (0.75f - -0.75f) + -0.75f;
 		float y = float(rand()) / float(RAND_MAX) * (0.75f - -0.75f) + -0.75f;
@@ -163,8 +163,8 @@ void AppWindow::onUpdate()
 	//GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(m_ps, m_cb);
 
 	//GraphicsEngine::get()->setShaders();
-	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(m_vs);
-	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(m_ps);
+	//GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(m_vs);
+	//GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(m_ps);
 
 	//GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
 

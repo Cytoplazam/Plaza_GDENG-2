@@ -2,6 +2,7 @@
 #include "GraphicsEngine.h"
 #include "InputSystem.h"
 #include "SwapChain.h"
+#include <iostream>
 
 Cube::Cube(string name, void* shaderByteCode, size_t sizeShader):GameObject(name)
 {
@@ -47,10 +48,10 @@ Cube::Cube(string name, void* shaderByteCode, size_t sizeShader):GameObject(name
 	this->ib = GraphicsEngine::get()->createIndexBuffer();
 	this->ib->load(indexList, ARRAYSIZE(indexList));
 
-	CBData cbData = {};
+	constant cbData;
 	cbData.time = 0;
 	this->cb = GraphicsEngine::get()->createConstantBuffer();
-	this->cb->load(&cbData, sizeof(CBData));
+	this->cb->load(&cbData, sizeof(constant));
 }
 
 Cube::~Cube()
@@ -62,17 +63,14 @@ Cube::~Cube()
 
 void Cube::update(float deltaTime)
 {
-	deltaPos += (this->deltaTime / 10.0f) * this->speed;
+	deltaPos += (deltaTime / 10.0f) * this->speed;
 
 	this->setRot(deltaPos, deltaPos, deltaPos);
 }
 
 void Cube::draw(int w, int h, VertexShader* vs, PixelShader* ps)
 {
-	GraphicsEngine* ge = GraphicsEngine::get();
-	DeviceContext* dc = ge->getImmediateDeviceContext();
-
-	CBData cbData = {};
+	constant cbData;
 
 	if (this->deltaPos > 1.0f)
 	{
@@ -94,8 +92,11 @@ void Cube::draw(int w, int h, VertexShader* vs, PixelShader* ps)
 	Matrix4x4 zMatrix;
 	Matrix4x4 xMatrix;
 	Matrix4x4 yMatrix;
+	zMatrix.setIdentity();
 	zMatrix.setRotationZ(rot.m_z);
+	xMatrix.setIdentity();
 	xMatrix.setRotationX(rot.m_x);
+	yMatrix.setIdentity();
 	yMatrix.setRotationY(rot.m_y);
 
 	Matrix4x4 rotMatrix;
@@ -108,17 +109,17 @@ void Cube::draw(int w, int h, VertexShader* vs, PixelShader* ps)
 	cbData.viewMatrix.setIdentity();
 	cbData.projMatrix.setOrthoLH(w / 400.0f, h / 400.0f, -4.0f, 4.0f);
 	
-	this->cb->update(dc, &cbData);
-	dc->setConstantBuffer(vs, this->cb);
-	dc->setConstantBuffer(ps, this->cb);
+	this->cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cbData);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(vs, this->cb);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(ps, this->cb);
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(vs);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(ps);
 
-	dc->setIndexBuffer(this->ib);
-	dc->setVertexBuffer(this->vb);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setIndexBuffer(this->ib);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(this->vb);
 
-	dc->drawIndexedTriangleList(this->ib->getSizeIndexList(), 0, 0);
+	GraphicsEngine::get()->getImmediateDeviceContext()->drawIndexedTriangleList(this->ib->getSizeIndexList(), 0, 0);
 }
 
 void Cube::setAnimSpeed(float speed)

@@ -3,6 +3,8 @@
 #include <string>
 #include "Vector3D.h"
 #include "Matrix4x4.h"
+#include "PixelShader.h"
+#include "VertexShader.h"
 
 using namespace std;
 
@@ -40,7 +42,7 @@ public:
 	};
 
 	_declspec(align(16))
-		struct CBData
+		struct constant
 	{
 		Matrix4x4 worldMatrix;
 		Matrix4x4 viewMatrix;

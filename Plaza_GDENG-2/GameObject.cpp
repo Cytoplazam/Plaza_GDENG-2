@@ -10,6 +10,8 @@ GameObject::GameObject(string name)
 
 GameObject::~GameObject()
 {
+	this->vs->release();
+	this->ps->release();
 }
 
 void GameObject::setPos(float x, float y, float z)
