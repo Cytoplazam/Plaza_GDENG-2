@@ -26,6 +26,8 @@ public:
 	//DEFAULT SIMPLE SHADERS
 	SwapChain* createSwapChain();
 	DeviceContext* getImmediateDeviceContext();
+	ID3D11Device* getD3Ddevice();
+	ID3D11DeviceContext* getContext();
 	VertexBuffer* createVertexBuffer();
 	IndexBuffer* createIndexBuffer();
 	ConstantBuffer* createConstantBuffer();

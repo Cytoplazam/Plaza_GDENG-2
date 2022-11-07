@@ -1,5 +1,9 @@
 #pragma once
 #include <Windows.h>
+#include "imgui.h"
+#include "imgui_impl_dx11.h"
+#include "imgui_impl_win32.h"
+#include "UIManager.h"
 #include "EngineTime.h"
 
 class Window
@@ -20,6 +24,9 @@ public:
 	virtual void onCreate() = 0;
 	virtual void onUpdate() = 0;
 	virtual void onDestroy();
+	virtual void onFocus();
+	virtual void onKillFocus();
+
 
 	~Window();
 protected:

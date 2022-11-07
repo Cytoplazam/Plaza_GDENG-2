@@ -1,4 +1,5 @@
 #include "AppWindow.h"
+#include "InputSystem.h"
 #include <Windows.h>
 #include <cstdlib>
 
@@ -32,8 +33,10 @@ AppWindow::~AppWindow()
 void AppWindow::onCreate()
 {
 	Window::onCreate();
+	InputSystem::get()->addListener(this);
 	EngineTime::initialize();
 	GraphicsEngine::get()->init();
+	SceneCameraHandler::init();
 	m_swap_chain = GraphicsEngine::get()->createSwapChain();
 
 	RECT rc = this->getClientWindowRect();
@@ -48,26 +51,26 @@ void AppWindow::onCreate()
 		//{0.5f, -0.5f, 0.0f, 0, 0, 1}
 
 		//RAINBOW RECTANGLE
-		//Triangle List 
+		//Triangle List
 		{-0.5f, -0.5f, 0.0f, -0.32f, -0.11f, 0.0f,  0, 0, 0,   0, 1, 0},
-		{-0.5f, 0.5f, 0.0f,  -0.11f, 0.78f, 0.0f,   1, 1, 0,   0, 1, 1}, 
-		{0.5f, -0.5f, 0.0f,  0.75f, -0.73f, 0.0f,   0, 0, 1,   1, 0, 0}, 
+		{-0.5f, 0.5f, 0.0f,  -0.11f, 0.78f, 0.0f,   1, 1, 0,   0, 1, 1},
+		{0.5f, -0.5f, 0.0f,  0.75f, -0.73f, 0.0f,   0, 0, 1,   1, 0, 0},
 		{0.5f, 0.5f, 0.0f,   0.88f, 0.7f, 0.0f,     1, 1, 1,   0, 0, 1}
 
 		//GREEN RECTANGLE
-		//Triangle List 
+		//Triangle List
 		//{-0.5f, -0.5f, 0.0f, 0, 1, 0},
 		//{-0.5f, 0.5f, 0.0f, 0, 1, 0},
 		//{0.5f, -0.5f, 0.0f, 0, 1, 0},
 		//{0.5f, 0.5f, 0.0f, 0, 1, 0}
-	
-		
+
+
 		/*Triangle Strip x - y - z
 		{-0.5f, -0.5f, 0.0f}, //pos1
 		{-0.5f, 0.5f, 0.0f}, //pos2
 		{0.5f, 0.5f, 0.0f}, //pos3
-		{0.5f, 0.5f, 0.0f}, 
-		{0.5f, -0.5f, 0.0f}, 
+		{0.5f, 0.5f, 0.0f},
+		{0.5f, -0.5f, 0.0f},
 		{-0.5f, -0.5f, 0.0f}
 	};*/
 
@@ -83,7 +86,7 @@ void AppWindow::onCreate()
 	{
 		this->quad[i] = new Quad();
 	}*/
-	
+
 
 	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 
@@ -93,17 +96,108 @@ void AppWindow::onCreate()
 
 	//m_vb->load(list, sizeof(vertex), size_list, shader_byte_code, size_shader);
 
-	srand(time(NULL));
-	for (int i = 0; i < 100; i++)
+	//srand(time(NULL));
+	for (int i = 0; i < 3; i++)
 	{
-		float x = float(rand()) / float(RAND_MAX) * (0.75f - -0.75f) + -0.75f;
-		float y = float(rand()) / float(RAND_MAX) * (0.75f - -0.75f) + -0.75f;
+		//float x = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
+		//float y = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
+		//float z = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
 
 		Cube* cubeObject = new Cube("Cube", shader_byte_code, size_shader);
-		cubeObject->setAnimSpeed(float(rand()) / float(RAND_MAX) * (3.75f - -3.75f) + -3.75f);
-		cubeObject->setPos(Vector3D(x, y, 0.0f));
-		cubeObject->setScale(Vector3D(0.25, 0.25, 0.25));
+		//cubeObject->setAnimSpeed(float(rand()) / float(RAND_MAX) * (3.75f - -3.75f) + -3.75f);
+		if (i == 0)
+			cubeObject->setPos(Vector3D(0, 0.9f, 0));
+		else if (i == 1)
+			cubeObject->setPos(Vector3D(-1.5f, 2.0f, 0));
+		else if (i == 2)
+			cubeObject->setPos(Vector3D(-1.5f, 3.0f, -2.0f));
+		cubeObject->setRot(Vector3D(rotX, rotY, 0.0f));
+		cubeObject->setScale(Vector3D(scale, scale, scale));
 		this->cubes.push_back(cubeObject);
+	}
+
+	for (int i = 0; i < 15; i++)
+	{
+		Plane* plane = new Plane("Plane", shader_byte_code, size_shader);
+		if (i == 0)
+		{
+			plane->setPos(Vector3D(0.0f, 0.0f, 0.0f));
+			plane->setRot(Vector3D(0, 0, 90));
+		}
+		if (i == 1)
+		{
+			plane->setPos(Vector3D(-1.55f, 0.0f, 0.0f));
+			plane->setRot(Vector3D(0, 0, -90));
+		}
+		if (i == 2)
+		{
+			plane->setPos(Vector3D(1.55f, 0.0f, 0.0f));
+			plane->setRot(Vector3D(0, 0, -90));
+		}
+		if (i == 3)
+		{
+			plane->setPos(Vector3D(3.1f, 0.0f, 0.0f));
+			plane->setRot(Vector3D(0, 0, 90));
+		}
+		if (i == 4)
+		{
+			plane->setPos(Vector3D(4.65f, 0.0f, 0.0f));
+			plane->setRot(Vector3D(0, 0, -90));
+		}
+		if (i == 5)
+		{
+			plane->setPos(Vector3D(6.2f, 0.0f, 0.0f));
+			plane->setRot(Vector3D(0, 0, 90));
+		}
+		if (i == 6)
+		{
+			plane->setPos(Vector3D(0.55f, 1.55f, 0.0f));
+			plane->setRot(Vector3D(0, 0, 0));
+		}
+		if (i == 7)
+		{
+			plane->setPos(Vector3D(4.1f, 1.55f, 0.0f));
+			plane->setRot(Vector3D(0, 0, 0));
+		}
+		if (i == 8)
+		{
+			plane->setPos(Vector3D(1.55f, 3.12f, 0.0f));
+			plane->setRot(Vector3D(0, 0, 90));
+		}
+		if (i == 9)
+		{
+			plane->setPos(Vector3D(0.0f, 3.12f, 0.0f));
+			plane->setRot(Vector3D(0, 0, -90));
+		}
+		if (i == 10)
+		{
+			plane->setPos(Vector3D(3.1f, 3.12f, 0.0f));
+			plane->setRot(Vector3D(0, 0, -90));
+		}
+		if (i == 11)
+		{
+			plane->setPos(Vector3D(4.65f, 3.12f, 0.0f));
+			plane->setRot(Vector3D(0, 0, 90));
+		}
+		if (i == 12)
+		{
+			plane->setPos(Vector3D(2.32f, 4.7f, 0.0f));
+			plane->setRot(Vector3D(0, 0, 0));
+		}
+		if (i == 13)
+		{
+			plane->setPos(Vector3D(1.55f, 6.24f, 0.0f));
+			plane->setRot(Vector3D(0, 0, -90));
+		}
+		if (i == 14)
+		{
+			plane->setPos(Vector3D(3.1f, 6.24f, 0.0f));
+			plane->setRot(Vector3D(0, 0, 90));
+		}
+		//plane->setPos(Vector3D(0.0f, -0.5f, 3.0f));
+		//plane->setRot(Vector3D(rotX, rotY, 0.0f));
+		plane->setScale(Vector3D(3.5f, 0.01f, 2.25f));
+		this->planes.push_back(plane);
 	}
 
 	GraphicsEngine::get()->releaseCompiledShader();
@@ -117,7 +211,7 @@ void AppWindow::onCreate()
 	//constant cc;
 
 	//cc.m_time = 0;
-
+	UIManager::get()->init(m_hwnd);
 	//m_cb = GraphicsEngine::get()->createConstantBuffer();
 	//m_cb->load(&cc, sizeof(constant));
 }
@@ -126,6 +220,8 @@ void AppWindow::onUpdate()
 {
 	this->ticks += EngineTime::getDeltaTime();
 	Window::onUpdate();
+	InputSystem::get()->update();
+	//InputSystem::get()->showCursor(false);
 	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain, 0, 0, 0.5, 1);
 
 	RECT rc = this->getClientWindowRect();
@@ -173,9 +269,24 @@ void AppWindow::onUpdate()
 
 	for (int i = 0; i < this->cubes.size(); i++)
 	{
-		this->cubes[i]->update(EngineTime::getDeltaTime());
-		this->cubes[i]->draw(width, height, this->m_vs, this->m_ps);
+		//this->cubes[i]->setScale(Vector3D(scale, scale, scale));
+		//this->cubes[i]->setRot(Vector3D(rotX, rotY, 0.0f));
+		//this->cubes[i]->setAnimSpeed(1.0f);
+		//this->cubes[i]->update(EngineTime::getDeltaTime());
+		//this->cubes[i]->draw(width, height, this->m_vs, this->m_ps, forward, right);
 	}
+
+	for (int i = 0; i < this->planes.size(); i++)
+	{
+		//this->planes[i]->setScale(Vector3D(scale * 3.0f, scale * 0.1, scale * 3.0f));
+		//this->planes[i]->setPos(Vector3D(0.0f, 0.0f, 0.0f));
+		//this->planes[i]->setRot(Vector3D(rotX, rotY, 2.0f));
+		this->planes[i]->draw(width, height, this->m_vs, this->m_ps, forward, right);
+	}
+
+	SceneCameraHandler::get()->update();
+
+	UIManager::get()->drawUI();
 
 	m_swap_chain->present(true);
 }
@@ -184,8 +295,78 @@ void AppWindow::onDestroy()
 {
 	Window::onDestroy();
 	//m_vb->release();
+	//SceneCameraHandler::destroy();
 	m_swap_chain->release();
 	//m_vs->release();
 	//m_ps->release();
 	GraphicsEngine::get()->release();
+	UIManager::get()->destroy();
+}
+
+void AppWindow::onFocus()
+{
+	InputSystem::get()->addListener(this);
+}
+
+void AppWindow::onKillFocus()
+{
+	InputSystem::get()->removeListener(this);
+}
+
+void AppWindow::onKeyDown(int key)
+{
+	/*if (key == 'W')
+	{
+		//rotX += 0.707f * EngineTime::getDeltaTime();
+		forward = 1.0f;
+	}
+	else if (key == 'S')
+	{
+		forward = -1.0f;
+	}
+	else if (key == 'D')
+	{
+		right = 1.0f;
+	}
+	else if (key == 'A')
+	{
+		right = -1.0f;
+	}*/
+}
+
+void AppWindow::onKeyUp(int key)
+{
+	//forward = 0.0f;
+	//right = 0.0f;
+}
+
+void AppWindow::onMouseMove(const Point& mousePos)
+{
+	/*int width = this->getClientWindowRect().right - this->getClientWindowRect().left;
+	int height = this->getClientWindowRect().bottom - this->getClientWindowRect().top;
+
+	rotX += (mousePos.y - (height / 2.0f)) * EngineTime::getDeltaTime() * 0.1f;
+	rotY += (mousePos.x - (width / 2.0f)) * EngineTime::getDeltaTime() * 0.1f;
+
+	InputSystem::get()->setCursorPos(Point(width / 2.0f, height / 2.0f));*/
+}
+
+void AppWindow::onLMD(const Point& mousePos)
+{
+	//scale = 0.5f;
+}
+
+void AppWindow::onLMU(const Point& mousePos)
+{
+	//scale = 1.0f;
+}
+
+void AppWindow::onRMD(const Point& mousePos)
+{
+	//scale = 2.5f;
+}
+
+void AppWindow::onRMU(const Point& mousePos)
+{
+	//scale = 1.0f;
 }

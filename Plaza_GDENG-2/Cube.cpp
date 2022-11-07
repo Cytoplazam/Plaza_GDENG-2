@@ -6,18 +6,21 @@
 
 Cube::Cube(string name, void* shaderByteCode, size_t sizeShader):GameObject(name)
 {
+
+	//mWorldCam.setTranslation(Vector3D(0, 0, -2));
+
 	Vertex quadList[] =
 	{
 		//Front
-		{Vector3D(-0.5f, -0.5f, -0.5f),  Vector3D(1, 0, 0),   Vector3D(0.2f, 0, 0)},
-		{Vector3D(-0.5f, 0.5f, -0.5f),   Vector3D(1, 1, 0),   Vector3D(0.2f, 0.2f, 0)},
-		{Vector3D(0.5f, 0.5f, -0.5f),    Vector3D(1, 1, 1),   Vector3D(0.2f, 0.2f, 0)},
-		{Vector3D(0.5f, -0.5f, -0.5f),   Vector3D(1, 0, 0),   Vector3D(0.2f, 0, 0)},
+		{Vector3D(-0.5f, -0.5f, -0.5f),  Vector3D(1, 0, 0),   Vector3D(1, 0, 0)},
+		{Vector3D(-0.5f, 0.5f, -0.5f),   Vector3D(0, 1, 0),   Vector3D(0, 1, 0)},
+		{Vector3D(0.5f, 0.5f, -0.5f),    Vector3D(0, 0, 1),   Vector3D(0, 0, 1)},
+		{Vector3D(0.5f, -0.5f, -0.5f),   Vector3D(1, 1, 0),   Vector3D(1, 1, 0)},
 		//Back
-		{Vector3D(0.5f, -0.5f, 0.5f),    Vector3D(0, 1, 0),   Vector3D(0, 0.2f, 0)},
-		{Vector3D(0.5f, 0.5f, 0.5f),     Vector3D(0, 1, 1),   Vector3D(0, 0.2f, 0.2f)},
-		{Vector3D(-0.5f, 0.5f, 0.5f),    Vector3D(0, 1, 1),   Vector3D(1, 0.2f, 0.2f)},
-		{Vector3D(-0.5f, -0.5f, 0.5f),   Vector3D(0, 1, 0),   Vector3D(0, 0.2f, 0)}
+		{Vector3D(0.5f, -0.5f, 0.5f),    Vector3D(1, 0, 0),   Vector3D(1, 0, 0)},
+		{Vector3D(0.5f, 0.5f, 0.5f),     Vector3D(0, 1, 0),   Vector3D(0, 1, 0)},
+		{Vector3D(-0.5f, 0.5f, 0.5f),    Vector3D(0, 0, 1),   Vector3D(0, 0, 1)},
+		{Vector3D(-0.5f, -0.5f, 0.5f),   Vector3D(1, 1, 0),   Vector3D(1, 1, 0)}
 	};
 
 	this->vb = GraphicsEngine::get()->createVertexBuffer();
@@ -63,29 +66,53 @@ Cube::~Cube()
 
 void Cube::update(float deltaTime)
 {
-	deltaPos += (deltaTime / 10.0f) * this->speed;
-
-	this->setRot(deltaPos, deltaPos, deltaPos);
+	//deltaPos += (deltaTime) * this->speed;
+	//this->setRot(deltaPos, deltaPos, deltaPos);
+	this->setScale(deltaScale, scaleY, deltaScale);
+	if (deltaScale < 5.0f && scaleY > 0.1f)
+	{
+		//deltaPos -= (deltaTime)*this->speed;
+		deltaScale += 0.01f * this->speed;
+		scaleY -= 0.01f * this->speed;
+		//if (deltaScale <= 0.25f)
+			//decreasing = false;
+	}
+	/*else
+	{
+		deltaPos += (deltaTime)*this->speed;
+		deltaScale += 0.01f * this->speed;
+		if (deltaScale >= 1.0f)
+			decreasing = true;
+	}*/
+		
 }
 
-void Cube::draw(int w, int h, VertexShader* vs, PixelShader* ps)
+void Cube::draw(int w, int h, VertexShader* vs, PixelShader* ps, float forward, float right)
 {
 	constant cbData;
 
-	if (this->deltaPos > 1.0f)
+	Matrix4x4 temp;
+	Matrix4x4 worldCam;
+
+	cbData.worldMatrix.setIdentity();
+	worldCam.setIdentity();
+
+	/*if (this->deltaPos > 1.0f)
 	{
 		this->deltaPos = 0.0f;
 	}
 	else
 	{
 		this->deltaPos += this->deltaTime * 0.1f;
-	}
+	}*/
 
 	Matrix4x4 allMatrix;
 	allMatrix.setIdentity();
 	Matrix4x4 transMatrix;
+	transMatrix.setIdentity();
 	transMatrix.setTranslation(this->getLocalPosition());
 	Matrix4x4 scaleMatrix;
+	scaleMatrix.setIdentity();
 	scaleMatrix.setScale(this->getLocalScale());
 	Vector3D rot;
 	rot = this->getLocalRotation();
@@ -106,9 +133,31 @@ void Cube::draw(int w, int h, VertexShader* vs, PixelShader* ps)
 	allMatrix = allMatrix.multiplyMatrix(transMatrix);
 	cbData.worldMatrix = allMatrix;
 
-	cbData.viewMatrix.setIdentity();
-	cbData.projMatrix.setOrthoLH(w / 400.0f, h / 400.0f, -4.0f, 4.0f);
+	Matrix4x4 camMatrix = SceneCameraHandler::get()->getSceneCameraViewMatrix();
+	cbData.viewMatrix = camMatrix;
+
+	/*temp.setIdentity();
+	temp.setRotationX(rot.m_x);
+	worldCam *= temp;
+
+	temp.setIdentity();
+	temp.setRotationY(rot.m_y);
+	worldCam *= temp;
+
+	Vector3D newPos = mWorldCam.getTranslation() + worldCam.getZDirection() * (forward * 0.3f);
+
+	newPos = newPos + worldCam.getXDirection() * (right * 0.3f);
+
+	worldCam.setTranslation(Vector3D(newPos));
+
+	mWorldCam = worldCam;
+	worldCam.inverse();
+
+	cbData.viewMatrix = worldCam;
+	cbData.projMatrix.setOrthoLH(w / 400.0f, h / 400.0f, -4.0f, 4.0f);*/
 	
+	cbData.projMatrix.setPerspectiveFovLH(1.57f, float(w) / float(h), 0.1f, 100.0f);
+
 	this->cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cbData);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(vs, this->cb);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(ps, this->cb);

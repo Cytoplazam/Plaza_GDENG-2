@@ -1,15 +1,20 @@
-﻿  Cube.cpp
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(55,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(56,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(57,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(58,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(63,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(64,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(65,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(66,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(71,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(72,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(73,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(74,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\Plaza_GDENG-2\Cube.cpp(24,90): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
-  Plaza_GDENG-2.vcxproj -> C:\Users\Student\Documents\GitHub\Plaza_GDENG-2\x64\Debug\Plaza_GDENG-2.exe
+﻿  Plane.cpp
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(56,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(57,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(58,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(59,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(64,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(65,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(66,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(67,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(72,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(73,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(74,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(75,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(119,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(120,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(121,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(122,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(165,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Plane.cpp(26,90): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
+  Plaza_GDENG-2.vcxproj -> C:\Users\CYTO\source\repos\Plaza_GDENG-2\x64\Debug\Plaza_GDENG-2.exe

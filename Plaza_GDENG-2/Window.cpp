@@ -1,5 +1,7 @@
 #include "Window.h"
 
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
+
 Window* window = NULL;
 
 Window::Window()
@@ -9,6 +11,9 @@ Window::Window()
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
+    if (ImGui_ImplWin32_WndProcHandler(hwnd, msg, wparam, lparam))
+        return true;
+
     switch (msg)
     {
     case WM_CREATE:
@@ -16,6 +21,16 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
         //event on window creation
         window->setHWND(hwnd);
         window->onCreate();
+        break;
+    }
+    case WM_SETFOCUS:
+    {
+        window->onFocus();
+        break;
+    }
+    case WM_KILLFOCUS:
+    {
+        window->onKillFocus();
         break;
     }
     case WM_DESTROY:
@@ -56,7 +71,7 @@ bool Window::init()
         window = this;
 
     //window creation
-    m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MyWindowClass", L"DirectX Application", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1024, 768, NULL, NULL, NULL, NULL);
+    m_hwnd = ::CreateWindowEx(WS_EX_OVERLAPPEDWINDOW, L"MyWindowClass", L"DirectX Application", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, UIManager::WINDOW_WIDTH, UIManager::WINDOW_HEIGHT, NULL, NULL, NULL, NULL);
 
     //if creation fails, return false
     if (!m_hwnd)
@@ -130,6 +145,14 @@ void Window::onUpdate()
 void Window::onDestroy()
 {
     m_is_run = false;
+}
+
+void Window::onFocus()
+{
+}
+
+void Window::onKillFocus()
+{
 }
 
 Window::~Window()

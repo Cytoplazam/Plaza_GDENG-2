@@ -18,7 +18,7 @@ public:
 	~GameObject();
 
 	virtual void update(float deltaTime) = 0;
-	virtual void draw(int w, int h, VertexShader* vs, PixelShader* ps) = 0;
+	virtual void draw(int w, int h, VertexShader* vs, PixelShader* ps, float forward, float right) = 0;
 
 	void setPos(float x, float y, float z);
 	void setPos(Vector3D pos);
