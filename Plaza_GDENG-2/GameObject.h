@@ -1,15 +1,18 @@
 #pragma once
 
 #include <string>
+#include "Vector2D.h"
 #include "Vector3D.h"
 #include "Matrix4x4.h"
 #include "PixelShader.h"
+#include "Texture.h"
 #include "VertexShader.h"
 
 using namespace std;
 
 class VertexShader;
 class PixelShader;
+class Texture;
 
 class GameObject
 {
@@ -37,8 +40,7 @@ public:
 	struct Vertex
 	{
 		Vector3D pos;
-		Vector3D color;
-		Vector3D color1;
+		Vector2D texcoord;
 	};
 
 	_declspec(align(16))
@@ -53,6 +55,7 @@ public:
 protected:
 	VertexShader* vs;
 	PixelShader* ps;
+	Texture* tex;
 	Vector3D pos;
 	Vector3D scale;
 	Vector3D rot;

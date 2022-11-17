@@ -10,9 +10,13 @@
 #include "Quad.h"
 #include "Cube.h"
 #include "Plane.h"
+#include "OBJ.h"
 #include "EngineTime.h"
 #include "InputSystem.h"
 #include "SceneCameraHandler.h"
+#include "Texture.h"
+#include "TextureManager.h"
+#include "MeshManager.h"
 #include "UIManager.h"
 #include <iostream>
 #include <vector>
@@ -41,6 +45,12 @@ public:
 
 	virtual void onRMD(const Point& mousePos) override;
 	virtual void onRMU(const Point& mousePos) override;
+public:
+	typedef std::wstring String;
+	const String WOOD = L"Assets\\Textures\\wood.jpg";
+private:
+	unsigned char m_mesh_layout_byte_code[1024];
+	size_t m_mesh_layout_size = 0;
 private:
 	float scale = 1.0f;
 	float rotX = 0.0f;
@@ -50,14 +60,19 @@ private:
 	float right = 0.0f;
 	std::vector<Cube*> cubes;
 	std::vector<Plane*> planes;
+	std::vector<OBJ*> objs;
 	InputSystem is;
 	SwapChain* m_swap_chain;
+	Texture* m_wood_tex;
 	VertexBuffer* m_vb;
 	VertexShader* m_vs;
 	PixelShader* m_ps;
+	VertexShader* m_vst;
+	PixelShader* m_pst;
 	ConstantBuffer* m_cb;
 	Plane* plane;
 	Cube* cube;
+	OBJ* obj;
 	Quad* quad[];
 };
 

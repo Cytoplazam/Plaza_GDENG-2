@@ -1,12 +1,15 @@
 #pragma once
 #include <d3d11.h>
+#include "Texture.h"
 
 class SwapChain;
 class VertexBuffer;
+class VertexBufferTex;
 class VertexShader;
 class IndexBuffer;
 class PixelShader;
 class ConstantBuffer;
+class Texture;
 
 class DeviceContext
 {
@@ -16,6 +19,8 @@ public:
 	void clearRenderTargetColor(SwapChain* swap_chain, float red, float green, float blue, float alpha);
 
 	void setVertexBuffer(VertexBuffer* vertex_buffer);
+
+	void setVertexBufferTex(VertexBufferTex* vertex_buffer_tex);
 
 	void setIndexBuffer(IndexBuffer* index_buffer);
 
@@ -29,6 +34,9 @@ public:
 
 	void setVertexShader(VertexShader* vertex_shader);
 	void setPixelShader(PixelShader* pixel_shader);
+
+	void setTexture(VertexShader* vertex_shader, Texture* tex);
+	void setTexture(PixelShader* pixel_shader, Texture* tex);
 
 	void setConstantBuffer(VertexShader* vertex_shader, ConstantBuffer* buffer);
 	void setConstantBuffer(PixelShader* pixel_shader, ConstantBuffer* buffer);

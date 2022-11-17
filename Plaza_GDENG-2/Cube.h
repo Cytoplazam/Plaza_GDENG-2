@@ -2,11 +2,13 @@
 
 #include "GameObject.h"
 #include "VertexBuffer.h"
+#include "VertexBufferTex.h"
 #include "IndexBuffer.h"
 #include "ConstantBuffer.h"
 #include "DeviceContext.h"
 #include "InputListener.h"
 #include "Matrix4x4.h"
+#include "Texture.h"
 #include "SceneCameraHandler.h"
 
 class Cube : public GameObject
@@ -21,6 +23,8 @@ public:
 
 private:
 	VertexBuffer* vb;
+	VertexBufferTex* vbt;
+	Texture* tex;
 	IndexBuffer* ib;
 	ConstantBuffer* cb;
 	float ticks = 0.0f;

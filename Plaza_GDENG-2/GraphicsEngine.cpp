@@ -2,14 +2,28 @@
 #include "SwapChain.h"
 #include "DeviceContext.h"
 #include "VertexBuffer.h"
+#include "VertexBufferTex.h"
 #include "IndexBuffer.h"
 #include "ConstantBuffer.h"
 #include "VertexShader.h"
 #include "PixelShader.h"
+#include "MeshManager.h"
 #include "d3dcompiler.h"
 
 GraphicsEngine::GraphicsEngine()
 {
+	/*try
+	{
+		m_tex_manager = new TextureManager();
+	}
+	catch (...) { throw std::exception("TextureManager not created successfully");}*/
+
+	/*void* shader_byte_code = nullptr;
+	size_t size_shader = 0;
+	GraphicsEngine::get()->compileVertexShader(L"VertexMeshLayoutShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
+	::memcpy(m_mesh_layout_byte_code, shader_byte_code, size_shader);
+	m_mesh_layout_size = size_shader;
+	GraphicsEngine::get()->releaseCompiledShader();*/
 
 }
 
@@ -72,7 +86,7 @@ bool GraphicsEngine::release()
 
 GraphicsEngine::~GraphicsEngine()
 {
-
+	/*delete m_tex_manager;*/
 }
 
 bool GraphicsEngine::compileVertexShader(const wchar_t* file_name, const char* entry_point_name, void** shader_byte_code, size_t* byte_code_size)
@@ -113,6 +127,12 @@ void GraphicsEngine::releaseCompiledShader()
 		m_blob->Release();
 }
 
+void GraphicsEngine::getVertexMeshLayoutShaderByteCodeAndSize(void** byte_code, size_t* size)
+{
+	*byte_code = m_mesh_layout_byte_code;
+	*size = m_mesh_layout_size;
+}
+
 SwapChain* GraphicsEngine::createSwapChain()
 {
 	return new SwapChain();
@@ -136,6 +156,11 @@ ID3D11DeviceContext* GraphicsEngine::getContext()
 VertexBuffer* GraphicsEngine::createVertexBuffer()
 {
 	return new VertexBuffer();
+}
+
+VertexBufferTex* GraphicsEngine::createVertexBufferTex()
+{
+	return new VertexBufferTex();
 }
 
 IndexBuffer* GraphicsEngine::createIndexBuffer()
@@ -172,6 +197,16 @@ PixelShader* GraphicsEngine::createPixelShader(const void* shader_byte_code, siz
 	}
 
 	return ps;
+}
+
+TextureManager* GraphicsEngine::getTextureManager()
+{
+	return m_tex_manager;
+}
+
+MeshManager* GraphicsEngine::getMeshmanager()
+{
+	return m_mesh_manager;
 }
 
 /*bool GraphicsEngine::createShaders()

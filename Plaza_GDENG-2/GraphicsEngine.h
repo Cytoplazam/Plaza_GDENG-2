@@ -1,9 +1,12 @@
 #pragma once
 #include <d3d11.h>
+#include "TextureManager.h"
+#include "MeshManager.h"
 
 class SwapChain;
 class DeviceContext;
 class VertexBuffer;
+class VertexBufferTex;
 class IndexBuffer;
 class ConstantBuffer;
 class VertexShader;
@@ -23,17 +26,22 @@ public:
 	bool compilePixelShader(const wchar_t* file_name, const char* entry_point_name, void** shader_byte_code, size_t* byte_code_size);
 	void releaseCompiledShader();
 
+	void getVertexMeshLayoutShaderByteCodeAndSize(void** byte_code, size_t* size);
+
 	//DEFAULT SIMPLE SHADERS
 	SwapChain* createSwapChain();
 	DeviceContext* getImmediateDeviceContext();
 	ID3D11Device* getD3Ddevice();
 	ID3D11DeviceContext* getContext();
 	VertexBuffer* createVertexBuffer();
+	VertexBufferTex* createVertexBufferTex();
 	IndexBuffer* createIndexBuffer();
 	ConstantBuffer* createConstantBuffer();
 	VertexShader* createVertexShader(const void* shader_byte_code, size_t byte_code_size);
 	PixelShader* createPixelShader(const void* shader_byte_code, size_t byte_code_size);
 public:
+	TextureManager* getTextureManager();
+	MeshManager* getMeshmanager();
 	//bool createShaders();
 	//bool setShaders();
 	//void getShaderBufferAndSize(void** bytecode, UINT* size);
@@ -58,9 +66,16 @@ private:
 private:
 	friend class SwapChain;
 	friend class VertexBuffer;
+	friend class VertexBufferTex;
 	friend class VertexShader;
 	friend class PixelShader;
 	friend class ConstantBuffer;
 	friend class IndexBuffer;
+private:
+	TextureManager* m_tex_manager = nullptr;
+	MeshManager* m_mesh_manager = nullptr;
+
+	unsigned char m_mesh_layout_byte_code[1024];
+	size_t m_mesh_layout_size = 0;
 };
 

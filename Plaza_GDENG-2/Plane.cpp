@@ -8,18 +8,70 @@ Plane::Plane(string name, void* shaderByteCode, size_t sizeShader):GameObject(na
 {
 	//mWorldCam.setTranslation(Vector3D(0, 1, -2));
 
+	Vector3D posList[] =
+	{
+		//Front
+		{Vector3D(-0.5f, -0.5f, -0.5f)},
+		{Vector3D(-0.5f, 0.5f, -0.5f)},
+		{Vector3D(0.5f, 0.5f, -0.5f)},
+		{Vector3D(0.5f, -0.5f, -0.5f)},
+		//Back
+		{Vector3D(0.5f, -0.5f, 0.5f)},
+		{Vector3D(0.5f, 0.5f, 0.5f)},
+		{Vector3D(-0.5f, 0.5f, 0.5f)},
+		{Vector3D(-0.5f, -0.5f, 0.5f)}
+	};
+
+	Vector2D texCoordList[] =
+	{
+		//Front
+		{Vector2D(0.0f, 0.0f)},
+		{Vector2D(0.0f, 1.0f)},
+		{Vector2D(1.0f, 0.0f)},
+		{Vector2D(1.0f, 1.0f)},
+	};
+
+	//Vertex quadList[] =
+	//{
+	//	//Front
+	//	{Vector3D(-0.5f, -0.5f, -0.5f),  Vector3D(1, 0, 0),   Vector3D(1, 0, 0)},
+	//	{Vector3D(-0.5f, 0.5f, -0.5f),   Vector3D(0, 1, 0),   Vector3D(0, 1, 0)},
+	//	{Vector3D(0.5f, 0.5f, -0.5f),    Vector3D(0, 0, 1),   Vector3D(0, 0, 1)},
+	//	{Vector3D(0.5f, -0.5f, -0.5f),   Vector3D(1, 1, 0),   Vector3D(1, 1, 0)},
+	//	//Back
+	//	{Vector3D(0.5f, -0.5f, 0.5f),    Vector3D(1, 0, 0),   Vector3D(1, 0, 0)},
+	//	{Vector3D(0.5f, 0.5f, 0.5f),     Vector3D(0, 1, 0),   Vector3D(0, 1, 0)},
+	//	{Vector3D(-0.5f, 0.5f, 0.5f),    Vector3D(0, 0, 1),   Vector3D(0, 0, 1)},
+	//	{Vector3D(-0.5f, -0.5f, 0.5f),   Vector3D(1, 1, 0),   Vector3D(1, 1, 0)}
+	//};
+
 	Vertex quadList[] =
 	{
 		//Front
-		{Vector3D(-0.5f, -0.5f, -0.5f),  Vector3D(1, 0, 0),   Vector3D(1, 0, 0)},
-		{Vector3D(-0.5f, 0.5f, -0.5f),   Vector3D(0, 1, 0),   Vector3D(0, 1, 0)},
-		{Vector3D(0.5f, 0.5f, -0.5f),    Vector3D(0, 0, 1),   Vector3D(0, 0, 1)},
-		{Vector3D(0.5f, -0.5f, -0.5f),   Vector3D(1, 1, 0),   Vector3D(1, 1, 0)},
+		{posList[0], texCoordList[1]},
+		{posList[1], texCoordList[0]},
+		{posList[2], texCoordList[2]},
+		{posList[3], texCoordList[3]},
 		//Back
-		{Vector3D(0.5f, -0.5f, 0.5f),    Vector3D(1, 0, 0),   Vector3D(1, 0, 0)},
-		{Vector3D(0.5f, 0.5f, 0.5f),     Vector3D(0, 1, 0),   Vector3D(0, 1, 0)},
-		{Vector3D(-0.5f, 0.5f, 0.5f),    Vector3D(0, 0, 1),   Vector3D(0, 0, 1)},
-		{Vector3D(-0.5f, -0.5f, 0.5f),   Vector3D(1, 1, 0),   Vector3D(1, 1, 0)}
+		{posList[4], texCoordList[1]},
+		{posList[5], texCoordList[0]},
+		{posList[6], texCoordList[2]},
+		{posList[7], texCoordList[3]},
+
+		{posList[1], texCoordList[1]},
+		{posList[6], texCoordList[0]},
+		{posList[5], texCoordList[2]},
+		{posList[2], texCoordList[3]},
+
+		{posList[3], texCoordList[1]},
+		{posList[2], texCoordList[0]},
+		{posList[5], texCoordList[2]},
+		{posList[4], texCoordList[3]},
+
+		{posList[7], texCoordList[1]},
+		{posList[6], texCoordList[0]},
+		{posList[1], texCoordList[2]},
+		{posList[0], texCoordList[3]}
 	};
 
 	this->vb = GraphicsEngine::get()->createVertexBuffer();
@@ -34,17 +86,17 @@ Plane::Plane(string name, void* shaderByteCode, size_t sizeShader):GameObject(na
 		4, 5, 6,
 		6, 7, 4,
 		//top
-		1, 6, 5,
-		5, 2, 1,
+		8, 9, 10,
+		10, 11, 8,
 		//bottom
-		7, 0, 3,
-		3, 4, 7,
+		12, 13, 14,
+		14, 15, 12,
 		//right
-		3, 2, 5,
-		5, 4, 3,
+		16, 17, 18,
+		18, 19, 16,
 		//left
-		7, 6, 1,
-		1, 0, 7
+		20, 21, 22,
+		22, 23, 20
 	};
 
 	this->ib = GraphicsEngine::get()->createIndexBuffer();
@@ -147,6 +199,8 @@ void Plane::draw(int w, int h, VertexShader* vs, PixelShader* ps, float forward,
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(vs);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(ps);
+
+	GraphicsEngine::get()->getImmediateDeviceContext()->setTexture(ps, tex);
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setIndexBuffer(this->ib);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(this->vb);
