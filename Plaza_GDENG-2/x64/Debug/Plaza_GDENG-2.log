@@ -1,4 +1,4 @@
-﻿  Cube.cpp
+﻿  OBJ.cpp
 C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(56,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(57,20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(58,17): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -16,5 +16,5 @@ C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(120,44): warn
 C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(121,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(122,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Matrix4x4.h(165,16): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\Cube.cpp(89,91): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
+C:\Users\CYTO\source\repos\Plaza_GDENG-2\Plaza_GDENG-2\OBJ.cpp(95,91): warning C4267: 'argument': conversion from 'size_t' to 'UINT', possible loss of data
   Plaza_GDENG-2.vcxproj -> C:\Users\CYTO\source\repos\Plaza_GDENG-2\x64\Debug\Plaza_GDENG-2.exe

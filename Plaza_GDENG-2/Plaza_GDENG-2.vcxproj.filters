@@ -195,6 +195,12 @@
     <ClCompile Include="OBJ.cpp">
       <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
     </ClCompile>
+    <ClCompile Include="OBJa.cpp">
+      <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJb.cpp">
+      <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -333,6 +339,12 @@
       <Filter>GameEngine\Math</Filter>
     </ClInclude>
     <ClInclude Include="OBJ.h">
+      <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJa.h">
+      <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJb.h">
       <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
     </ClInclude>
   </ItemGroup>

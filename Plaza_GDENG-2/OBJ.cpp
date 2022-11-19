@@ -6,7 +6,13 @@
 
 OBJ::OBJ(string name, void* shaderByteCode, size_t sizeShader) :GameObject(name)
 {
-	this->m_mesh = MeshManager::get()->createMeshFromFile(L"Assets\\Meshes\\teapot.obj");
+	std::string path = "Assets/Meshes/teapot.obj";
+	std::wstring wPath = wstring(path.begin(), path.end());
+	this->m_mesh = MeshManager::get()->createMeshFromFile(wPath.c_str());
+
+	std::string patha = "Assets/Textures/brick.png";
+	std::wstring wPatha = wstring(patha.begin(), patha.end());
+	this->tex = TextureManager::get()->createTextureFromFile(wPatha.c_str());
 	
 	if (!this->m_mesh)
 		std::cout << "no mesh";
@@ -130,22 +136,22 @@ void OBJ::update(float deltaTime)
 {
 	//deltaPos += (deltaTime) * this->speed;
 	//this->setRot(deltaPos, deltaPos, deltaPos);
-	this->setScale(deltaScale, scaleY, deltaScale);
-	if (deltaScale < 5.0f && scaleY > 0.1f)
+	this->setScale(deltaScale, deltaScale, deltaScale);
+	if (deltaScale >= 0.25f && increasing == false)
 	{
 		//deltaPos -= (deltaTime)*this->speed;
-		deltaScale += 0.01f * this->speed;
-		scaleY -= 0.01f * this->speed;
-		//if (deltaScale <= 0.25f)
-			//decreasing = false;
+		deltaScale -= 0.01f * this->speed;
+		//scaleY -= 0.01f * this->speed;
+		if (deltaScale <= 0.25f)
+			increasing = true;
 	}
-	/*else
+	else if (deltaScale <= 2.0f)
 	{
-		deltaPos += (deltaTime)*this->speed;
+		//deltaPos += (deltaTime)*this->speed;
 		deltaScale += 0.01f * this->speed;
-		if (deltaScale >= 1.0f)
-			decreasing = true;
-	}*/
+		if (deltaScale >= 2.0f)
+			increasing = false;
+	}
 
 }
 
@@ -227,14 +233,15 @@ void OBJ::draw(int w, int h, VertexShader* vs, PixelShader* ps, float forward, f
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(vs);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(ps);
 
-	//GraphicsEngine::get()->getImmediateDeviceContext()->setTexture(vs, tex);
-	//GraphicsEngine::get()->getImmediateDeviceContext()->setTexture(ps, tex);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setTexture(vs, this->tex);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setTexture(ps, this->tex);
+
+	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBufferTex(this->vbt);
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBufferTex(this->m_mesh->getVertexBuffer());
 	GraphicsEngine::get()->getImmediateDeviceContext()->setIndexBuffer(this->m_mesh->getIndexBuffer());
 	
-
-	GraphicsEngine::get()->getImmediateDeviceContext()->drawIndexedTriangleList(this->ib->getSizeIndexList(), 0, 0);
+	GraphicsEngine::get()->getImmediateDeviceContext()->drawIndexedTriangleList(this->m_mesh->getIndexBuffer()->getSizeIndexList(), 0, 0);
 }
 
 void OBJ::setAnimSpeed(float speed)

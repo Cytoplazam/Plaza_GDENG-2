@@ -11,6 +11,8 @@
 #include "Cube.h"
 #include "Plane.h"
 #include "OBJ.h"
+#include "OBJa.h"
+#include "OBJb.h"
 #include "EngineTime.h"
 #include "InputSystem.h"
 #include "SceneCameraHandler.h"
@@ -61,6 +63,8 @@ private:
 	std::vector<Cube*> cubes;
 	std::vector<Plane*> planes;
 	std::vector<OBJ*> objs;
+	std::vector<OBJa*> objas;
+	std::vector<OBJb*> objbs;
 	InputSystem is;
 	SwapChain* m_swap_chain;
 	Texture* m_wood_tex;
@@ -73,6 +77,8 @@ private:
 	Plane* plane;
 	Cube* cube;
 	OBJ* obj;
+	OBJa* obja;
+	OBJb* objb;
 	Quad* quad[];
 };
 

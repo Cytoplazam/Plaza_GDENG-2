@@ -95,9 +95,6 @@ void AppWindow::onCreate()
 	/*GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 
 	m_vs = GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);*/
-	GraphicsEngine::get()->compileVertexShader(L"VertexMeshLayoutShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
-	::memcpy(m_mesh_layout_byte_code, shader_byte_code, size_shader);
-	m_mesh_layout_size = size_shader;
 
 	GraphicsEngine::get()->compileVertexShader(L"VertexShaderTex.hlsl", "vsmain", &shader_byte_code, &size_shader);
 
@@ -124,7 +121,7 @@ void AppWindow::onCreate()
 			cubeObject->setPos(Vector3D(-1.5f, 3.0f, -2.0f));*/
 		cubeObject->setPos(Vector3D(0.0f, 0.0f, 3.0f));
 		cubeObject->setRot(Vector3D(0.0f, 0.0f, 0.0f));
-		cubeObject->setScale(Vector3D(1.0f, 1.0f, 1.0f));
+		cubeObject->setScale(Vector3D(0.01f, 0.01f, 0.01f));
 		this->cubes.push_back(cubeObject);
 	}
 
@@ -144,10 +141,49 @@ void AppWindow::onCreate()
 			cubeObject->setPos(Vector3D(-1.5f, 3.0f, -2.0f));*/
 		objobj->setPos(Vector3D(0.0f, 0.0f, 3.0f));
 		objobj->setRot(Vector3D(0.0f, 0.0f, 0.0f));
-		objobj->setScale(Vector3D(50.0f, 50.0f, 50.0f));
+		objobj->setScale(Vector3D(1.0f, 1.0f, 1.0f));
 		this->objs.push_back(objobj);
 	}
 
+	for (int i = 0; i < 1; i++)
+	{
+		//float x = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
+		//float y = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
+		//float z = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
+
+		OBJa* objobj = new OBJa("OBJa", shader_byte_code, size_shader);
+		//cubeObject->setAnimSpeed(float(rand()) / float(RAND_MAX) * (3.75f - -3.75f) + -3.75f);
+		/*if (i == 0)
+			cubeObject->setPos(Vector3D(0, 0.9f, 0));
+		else if (i == 1)
+			cubeObject->setPos(Vector3D(-1.5f, 2.0f, 0));
+		else if (i == 2)
+			cubeObject->setPos(Vector3D(-1.5f, 3.0f, -2.0f));*/
+		objobj->setPos(Vector3D(-5.0f, 0.0f, 3.0f));
+		objobj->setRot(Vector3D(0.0f, 0.0f, 0.0f));
+		objobj->setScale(Vector3D(1.0f, 1.0f, 1.0f));
+		this->objas.push_back(objobj);
+	}
+
+	for (int i = 0; i < 1; i++)
+	{
+		//float x = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
+		//float y = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
+		//float z = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
+
+		OBJb* objobj = new OBJb("OBJb", shader_byte_code, size_shader);
+		//cubeObject->setAnimSpeed(float(rand()) / float(RAND_MAX) * (3.75f - -3.75f) + -3.75f);
+		/*if (i == 0)
+			cubeObject->setPos(Vector3D(0, 0.9f, 0));
+		else if (i == 1)
+			cubeObject->setPos(Vector3D(-1.5f, 2.0f, 0));
+		else if (i == 2)
+			cubeObject->setPos(Vector3D(-1.5f, 3.0f, -2.0f));*/
+		objobj->setPos(Vector3D(5.0f, 0.0f, 3.0f));
+		objobj->setRot(Vector3D(0.0f, 0.0f, 0.0f));
+		objobj->setScale(Vector3D(1.0f, 1.0f, 1.0f));
+		this->objbs.push_back(objobj);
+	}
 	for (int i = 0; i < 1; i++)
 	{
 		Plane* plane = new Plane("Plane", shader_byte_code, size_shader);
@@ -242,6 +278,9 @@ void AppWindow::onCreate()
 
 	m_pst = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
 
+	GraphicsEngine::get()->compileVertexShader(L"VertexMeshLayoutShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
+	::memcpy(m_mesh_layout_byte_code, shader_byte_code, size_shader);
+	m_mesh_layout_size = size_shader;
 
 	//GraphicsEngine::get()->releaseCompiledShader();
 
@@ -310,16 +349,34 @@ void AppWindow::onUpdate()
 		//this->cubes[i]->setRot(Vector3D(rotX, rotY, 0.0f));
 		//this->cubes[i]->setAnimSpeed(1.0f);
 		//this->cubes[i]->update(EngineTime::getDeltaTime());
-		this->cubes[i]->draw(width, height, this->m_vst, this->m_pst, forward, right);
+		//this->cubes[i]->draw(width, height, this->m_vst, this->m_pst, forward, right);
 	}
 
 	for (int i = 0; i < this->objs.size(); i++)
 	{
 		//this->cubes[i]->setScale(Vector3D(scale, scale, scale));
 		//this->cubes[i]->setRot(Vector3D(rotX, rotY, 0.0f));
-		//this->cubes[i]->setAnimSpeed(1.0f);
-		//this->cubes[i]->update(EngineTime::getDeltaTime());
+		//this->objs[i]->setAnimSpeed(1.0f);
+		//this->objs[i]->update(EngineTime::getDeltaTime());
 		this->objs[i]->draw(width, height, this->m_vst, this->m_pst, forward, right);
+	}
+
+	for (int i = 0; i < this->objas.size(); i++)
+	{
+		//this->cubes[i]->setScale(Vector3D(scale, scale, scale));
+		//this->cubes[i]->setRot(Vector3D(rotX, rotY, 0.0f));
+		//this->objs[i]->setAnimSpeed(1.0f);
+		//this->objs[i]->update(EngineTime::getDeltaTime());
+		//this->objas[i]->draw(width, height, this->m_vst, this->m_pst, forward, right);
+	}
+
+	for (int i = 0; i < this->objbs.size(); i++)
+	{
+		//this->cubes[i]->setScale(Vector3D(scale, scale, scale));
+		//this->cubes[i]->setRot(Vector3D(rotX, rotY, 0.0f));
+		//this->objs[i]->setAnimSpeed(1.0f);
+		//this->objs[i]->update(EngineTime::getDeltaTime());
+		//this->objbs[i]->draw(width, height, this->m_vst, this->m_pst, forward, right);
 	}
 
 	//for (int i = 0; i < this->planes.size(); i++)

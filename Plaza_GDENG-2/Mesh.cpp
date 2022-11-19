@@ -54,11 +54,33 @@ Mesh::Mesh(const wchar_t* full_path): Resource(full_path)
 				tinyobj::real_t vy = attribs.vertices[index.vertex_index * 3 + 1];
 				tinyobj::real_t vz = attribs.vertices[index.vertex_index * 3 + 2];
 
-				tinyobj::real_t tx = attribs.texcoords[index.texcoord_index * 2 + 0];
-				tinyobj::real_t ty = attribs.texcoords[index.texcoord_index * 2 + 1];
+				/*tinyobj::real_t tx = attribs.texcoords[index.texcoord_index * 2 + 0];
+				tinyobj::real_t ty = attribs.texcoords[index.texcoord_index * 2 + 1];*/
+
+				tinyobj::real_t tx = 0.0f;
+				tinyobj::real_t ty = 0.0f;
+
+				if (index.texcoord_index > 0)
+				{
+					tx = attribs.texcoords[index.texcoord_index * 2 + 0];
+					ty = attribs.texcoords[index.texcoord_index * 2 + 1];
+				}
 
 				VertexMesh vertex(Vector3D(vx, vy, vz), Vector2D(tx, ty));
 				list_verts.push_back(vertex);
+
+				/*tinyobj::real_t tx = 0.0f;
+				float temp = index.texcoord_index * 2 + 0;
+				if (temp < attribs.texcoords.size())
+				{
+					tinyobj::real_t tx = attribs.texcoords[temp];
+				}
+				tinyobj::real_t ty = 0.0f;
+				temp = index.texcoord_index * 2 + 0;
+				if (temp < attribs.texcoords.size())
+				{
+					tinyobj::real_t ty = attribs.texcoords[temp];
+				}*/
 
 				list_indices.push_back((unsigned int)index_offset + v);
 			}

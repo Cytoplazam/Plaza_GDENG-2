@@ -6,7 +6,9 @@
 
 Cube::Cube(string name, void* shaderByteCode, size_t sizeShader):GameObject(name)
 {
-	this->tex = TextureManager::get()->createTextureFromFile(L"Assets\\Textures\\wood.jpeg");
+	std::string path = "Assets/Textures/brick.png";
+	std::wstring wPath = wstring(path.begin(), path.end());
+	this->tex = TextureManager::get()->createTextureFromFile(wPath.c_str());
 	
 	if (!this->tex)
 		std::cout << "no texture\n";
@@ -227,8 +229,8 @@ void Cube::draw(int w, int h, VertexShader* vs, PixelShader* ps, float forward, 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(vs);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(ps);
 
-	GraphicsEngine::get()->getImmediateDeviceContext()->setTexture(vs, tex);
-	GraphicsEngine::get()->getImmediateDeviceContext()->setTexture(ps, tex);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setTexture(vs, this->tex);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setTexture(ps, this->tex);
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setIndexBuffer(this->ib);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBufferTex(this->vbt);
