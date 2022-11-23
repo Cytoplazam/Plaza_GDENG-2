@@ -145,6 +145,11 @@ public:
 		::memcpy(m_mat, matrix.m_mat, sizeof(float) * 16);
 	}
 
+	void setMatrix(float matrix[4][4])
+	{
+		::memcpy(m_mat, matrix, sizeof(float) * 16);
+	}
+
 	Vector3D getXDirection()
 	{
 		return Vector3D(m_mat[0][0], m_mat[0][1], m_mat[0][2]);

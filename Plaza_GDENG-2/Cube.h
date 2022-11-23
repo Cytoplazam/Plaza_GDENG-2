@@ -10,6 +10,7 @@
 #include "Matrix4x4.h"
 #include "Texture.h"
 #include "SceneCameraHandler.h"
+#include "PhysicsComponent.h"
 
 class Cube : public GameObject
 {
@@ -21,7 +22,7 @@ public:
 	void draw(int w, int h, VertexShader* vs, PixelShader* ps, float forward, float right) override;
 	void setAnimSpeed(float speed);
 
-private:
+protected:
 	VertexBuffer* vb;
 	VertexBufferTex* vbt;
 	Texture* tex;

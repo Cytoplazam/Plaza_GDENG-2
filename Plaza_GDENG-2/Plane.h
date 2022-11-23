@@ -2,10 +2,13 @@
 
 #include "GameObject.h"
 #include "VertexBuffer.h"
+#include "VertexBufferTex.h"
 #include "IndexBuffer.h"
 #include "ConstantBuffer.h"
+#include "Texture.h"
 #include "DeviceContext.h"
 #include "SceneCameraHandler.h"
+#include "PhysicsComponent.h"
 
 class Plane : public GameObject
 {
@@ -19,6 +22,7 @@ public:
 
 private:
 	VertexBuffer* vb;
+	VertexBufferTex* vbt;
 	IndexBuffer* ib;
 	ConstantBuffer* cb;
 	float ticks = 0.0f;

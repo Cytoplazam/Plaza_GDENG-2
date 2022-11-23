@@ -9,7 +9,9 @@
 #include "PixelShader.h"
 #include "Quad.h"
 #include "Cube.h"
+#include "PhysicsCube.h"
 #include "Plane.h"
+#include "PhysicsPlane.h"
 #include "OBJ.h"
 #include "OBJa.h"
 #include "OBJb.h"
@@ -19,6 +21,8 @@
 #include "Texture.h"
 #include "TextureManager.h"
 #include "MeshManager.h"
+#include "BaseComponentSystem.h"
+#include "PhysicsSystem.h"
 #include "UIManager.h"
 #include <iostream>
 #include <vector>
@@ -61,7 +65,9 @@ private:
 	float forward = 0.0f;
 	float right = 0.0f;
 	std::vector<Cube*> cubes;
+	std::vector<PhysicsCube*> pCubes;
 	std::vector<Plane*> planes;
+	std::vector<PhysicsPlane*> pPlanes;
 	std::vector<OBJ*> objs;
 	std::vector<OBJa*> objas;
 	std::vector<OBJb*> objbs;
@@ -74,11 +80,12 @@ private:
 	VertexShader* m_vst;
 	PixelShader* m_pst;
 	ConstantBuffer* m_cb;
-	Plane* plane;
+	/*Plane* plane;
 	Cube* cube;
+	PhysicsCube* pCube;
 	OBJ* obj;
 	OBJa* obja;
 	OBJb* objb;
-	Quad* quad[];
+	Quad* quad[];*/
 };
 

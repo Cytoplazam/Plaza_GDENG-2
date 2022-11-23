@@ -79,6 +79,15 @@
     <Filter Include="GameEngine\GraphicsEngine\Primitives\OBJs">
       <UniqueIdentifier>{0349b3e5-36d9-4ea6-9420-702d5899ff7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\PhysicsSystem">
+      <UniqueIdentifier>{ff6f515a-9ff0-4df5-ad90-f72f6e4c5a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\Primitives\PhysicsCube">
+      <UniqueIdentifier>{4e0ef4cb-b9e0-430a-aa1b-a79e753f6462}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\Primitives\PhysicsPlane">
+      <UniqueIdentifier>{f74bfd5d-8341-4c65-92bb-fdedc0e15c00}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -200,6 +209,24 @@
     </ClCompile>
     <ClCompile Include="OBJb.cpp">
       <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsSystem.cpp">
+      <Filter>GameEngine\PhysicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AComponent.cpp">
+      <Filter>GameEngine\PhysicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>GameEngine\PhysicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseComponentSystem.cpp">
+      <Filter>GameEngine\PhysicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsCube.cpp">
+      <Filter>GameEngine\GraphicsEngine\Primitives\PhysicsCube</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsPlane.cpp">
+      <Filter>GameEngine\GraphicsEngine\Primitives\PhysicsPlane</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -346,6 +373,24 @@
     </ClInclude>
     <ClInclude Include="OBJb.h">
       <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsSystem.h">
+      <Filter>GameEngine\PhysicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AComponent.h">
+      <Filter>GameEngine\PhysicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>GameEngine\PhysicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseComponentSystem.h">
+      <Filter>GameEngine\PhysicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsCube.h">
+      <Filter>GameEngine\GraphicsEngine\Primitives\PhysicsCube</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsPlane.h">
+      <Filter>GameEngine\GraphicsEngine\Primitives\PhysicsPlane</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

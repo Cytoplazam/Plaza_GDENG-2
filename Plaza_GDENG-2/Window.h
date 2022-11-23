@@ -1,4 +1,7 @@
 #pragma once
+
+#define NOMINMAX
+
 #include <Windows.h>
 #include "imgui.h"
 #include "imgui_impl_dx11.h"

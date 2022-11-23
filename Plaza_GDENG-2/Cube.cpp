@@ -155,11 +155,21 @@ void Cube::draw(int w, int h, VertexShader* vs, PixelShader* ps, float forward, 
 {
 	constant cbData;
 
+	if (this->overrideMatrix)
+	{
+		cbData.worldMatrix = this->getLocalMatrix();
+	}
+	else
+	{
+		this->ComputeLocalMatrix();
+		cbData.worldMatrix = this->getLocalMatrix();
+	}
+
 	Matrix4x4 temp;
 	Matrix4x4 worldCam;
 
-	cbData.worldMatrix.setIdentity();
-	worldCam.setIdentity();
+	//cbData.worldMatrix.setIdentity();
+	//worldCam.setIdentity();
 
 	/*if (this->deltaPos > 1.0f)
 	{
@@ -170,7 +180,7 @@ void Cube::draw(int w, int h, VertexShader* vs, PixelShader* ps, float forward, 
 		this->deltaPos += this->deltaTime * 0.1f;
 	}*/
 
-	Matrix4x4 allMatrix;
+	/*Matrix4x4 allMatrix;
 	allMatrix.setIdentity();
 	Matrix4x4 transMatrix;
 	transMatrix.setIdentity();
@@ -195,7 +205,7 @@ void Cube::draw(int w, int h, VertexShader* vs, PixelShader* ps, float forward, 
 	rotMatrix = rotMatrix.multiplyMatrix(xMatrix.multiplyMatrix(yMatrix.multiplyMatrix(zMatrix)));
 	allMatrix = allMatrix.multiplyMatrix(scaleMatrix.multiplyMatrix(rotMatrix));
 	allMatrix = allMatrix.multiplyMatrix(transMatrix);
-	cbData.worldMatrix = allMatrix;
+	cbData.worldMatrix = allMatrix;*/
 
 	Matrix4x4 camMatrix = SceneCameraHandler::get()->getSceneCameraViewMatrix();
 	cbData.viewMatrix = camMatrix;

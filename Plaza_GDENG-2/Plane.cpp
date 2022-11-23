@@ -7,6 +7,16 @@
 Plane::Plane(string name, void* shaderByteCode, size_t sizeShader):GameObject(name)
 {
 	//mWorldCam.setTranslation(Vector3D(0, 1, -2));
+	//this->ComputeLocalMatrix();
+	//this->attachComponent(new PhysicsComponent(("PhysicsComponent"), this));
+	std::string path = "Assets/Textures/wood.jpg";
+	std::wstring wPath = wstring(path.begin(), path.end());
+	this->tex = TextureManager::get()->createTextureFromFile(wPath.c_str());
+
+	if (!this->tex)
+		std::cout << "no texture\n";
+	else
+		std::cout << "texture loaded\n";
 
 	Vector3D posList[] =
 	{
@@ -74,8 +84,8 @@ Plane::Plane(string name, void* shaderByteCode, size_t sizeShader):GameObject(na
 		{posList[0], texCoordList[3]}
 	};
 
-	this->vb = GraphicsEngine::get()->createVertexBuffer();
-	this->vb->load(quadList, sizeof(Vertex), ARRAYSIZE(quadList), shaderByteCode, sizeShader);
+	this->vbt = GraphicsEngine::get()->createVertexBufferTex();
+	this->vbt->load(quadList, sizeof(Vertex), ARRAYSIZE(quadList), shaderByteCode, sizeShader);
 
 	unsigned int indexList[] =
 	{
@@ -110,7 +120,7 @@ Plane::Plane(string name, void* shaderByteCode, size_t sizeShader):GameObject(na
 
 Plane::~Plane()
 {
-	this->vb->release();
+	this->vbt->release();
 	this->ib->release();
 	GameObject::~GameObject();
 }
@@ -200,10 +210,11 @@ void Plane::draw(int w, int h, VertexShader* vs, PixelShader* ps, float forward,
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexShader(vs);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setPixelShader(ps);
 
-	GraphicsEngine::get()->getImmediateDeviceContext()->setTexture(ps, tex);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setTexture(vs, this->tex);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setTexture(ps, this->tex);
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->setIndexBuffer(this->ib);
-	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(this->vb);
+	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBufferTex(this->vbt);
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->drawIndexedTriangleList(this->ib->getSizeIndexList(), 0, 0);
 }

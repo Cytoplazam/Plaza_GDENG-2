@@ -1,12 +1,15 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include "Vector2D.h"
 #include "Vector3D.h"
 #include "Matrix4x4.h"
 #include "PixelShader.h"
 #include "Texture.h"
+#include <string>
 #include "VertexShader.h"
+#include "AComponent.h"
 
 using namespace std;
 
@@ -14,9 +17,14 @@ class VertexShader;
 class PixelShader;
 class Texture;
 
+class AComponent;
+
 class GameObject
 {
 public:
+	typedef std::string String;
+	typedef std::vector<AComponent*> ComponentList;
+
 	GameObject(string name);
 	~GameObject();
 
@@ -34,6 +42,17 @@ public:
 	void setRot(float x, float y, float z);
 	void setRot(Vector3D rot);
 	Vector3D getLocalRotation();
+
+	void attachComponent(AComponent* component);
+
+	AComponent* findComponentByName(String name);
+	//AComponent* findComponentByType(AComponent::ComponentType type, String name);
+
+	void ComputeLocalMatrix();
+
+	Matrix4x4 getLocalMatrix();
+	void setLocalMatrix(float matrix[16]);
+	float* getPhysicsLocalMatrix();
 
 	string getName();
 
@@ -53,6 +72,21 @@ public:
 	};
 
 protected:
+	ComponentList componentList;
+
+	Matrix4x4 Summation;
+	Matrix4x4 translate;
+	Matrix4x4 ScaleMatrix;
+
+	Matrix4x4 RotationZ;
+	Matrix4x4 RotationF;
+	Matrix4x4 RotationGl;
+	Matrix4x4 RotationMatrix;
+
+	Matrix4x4 RotationTotal;
+
+	bool overrideMatrix = false;
+	Matrix4x4 localMatrix;
 	VertexShader* vs;
 	PixelShader* ps;
 	Texture* tex;
