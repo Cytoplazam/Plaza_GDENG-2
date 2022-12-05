@@ -6,6 +6,7 @@
 #include "ProfilerScreen.h"
 #include "MenuScreen.h"
 #include "CreditsScreen.h"
+#include "StateScreen.h"
 #include "AUIScreen.h"
 #include <vector>
 #include <unordered_map>
@@ -15,6 +16,7 @@ public:
 	const String PROFILER_SCREEN = "PROFILER_SCREEN";
 	const String MENU_SCREEN = "MENU_SCREEN";
 	const String CREDITS_SCREEN = "CREDITS_SCREEN";
+	const String STATE_SCREEN = "STATE_SCREEN";
 	const String INSPECTOR_SCREEN = "INSPECTOR_SCREEN";
 	const String HIERARCHY_SCREEN = "HIERARCHY_SCREEN";	
 };
@@ -33,10 +35,17 @@ public:
 	void hideCredits();
 	void showColorP();
 	void hideColor();
+	void showEState();
+	void hideState();
 	void drawUI();
+	bool drawCube();
+	bool drawPlane();
 
 	static const int WINDOW_WIDTH = 1440;
 	static const int WINDOW_HEIGHT = 900;
+
+	bool cube = false;
+	bool plane = false;
 private:
 	UIManager(HWND hwnd);
 	~UIManager();
@@ -45,6 +54,7 @@ private:
 	static UIManager* sharedInstance;
 	bool showCredits = false;
 	bool showColor = false;
+	bool showState = false;
 	UIList uiList;
 	UITable uiTable;
 

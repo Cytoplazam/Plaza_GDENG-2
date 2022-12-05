@@ -1,8 +1,9 @@
 #include "GameObject.h"
 
-GameObject::GameObject(string name)
+GameObject::GameObject(string name, PrimitiveType type)
 {
 	this->name = name;
+	this->type = type;
 	this->rot = Vector3D::zeros();
 	this->pos = Vector3D::zeros();
 	this->scale = Vector3D::ones();
@@ -57,6 +58,11 @@ void GameObject::setRot(Vector3D rot)
 Vector3D GameObject::getLocalRotation()
 {
 	return this->rot;
+}
+
+GameObject::PrimitiveType GameObject::getType()
+{
+	return this->type;
 }
 
 void GameObject::attachComponent(AComponent* component)

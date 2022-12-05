@@ -22,10 +22,19 @@ class AComponent;
 class GameObject
 {
 public:
+	enum PrimitiveType
+	{
+		CAMERA,
+		CUBE, PCUBE, 
+		PLANE, PPLANE,
+		OBJ,
+
+	};
+
 	typedef std::string String;
 	typedef std::vector<AComponent*> ComponentList;
 
-	GameObject(string name);
+	GameObject(string name, PrimitiveType type);
 	~GameObject();
 
 	virtual void update(float deltaTime) = 0;
@@ -42,6 +51,8 @@ public:
 	void setRot(float x, float y, float z);
 	void setRot(Vector3D rot);
 	Vector3D getLocalRotation();
+
+	PrimitiveType getType();
 
 	void attachComponent(AComponent* component);
 
@@ -94,5 +105,6 @@ protected:
 	Vector3D scale;
 	Vector3D rot;
 	string name;
+	PrimitiveType type;
 };
 

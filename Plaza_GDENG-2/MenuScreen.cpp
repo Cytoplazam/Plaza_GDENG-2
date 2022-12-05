@@ -16,7 +16,15 @@ void MenuScreen::drawUI()
 		{
 			if (ImGui::MenuItem("Color Picker"))
 			{
+				//SceneWriter::get()->WriteToFile();
+			}
+			if (ImGui::MenuItem("Color Picker"))
+			{
 				UIManager::get()->showColorP();
+			}
+			if (ImGui::MenuItem("Engine States"))
+			{
+				UIManager::get()->showEState();
 			}
 			ImGui::EndMenu();
 		}
@@ -25,6 +33,18 @@ void MenuScreen::drawUI()
 			if (ImGui::MenuItem("Credits"))
 			{
 				UIManager::get()->showCreditsMenu();
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Primitives"))
+		{
+			if (ImGui::MenuItem("Physics Cube"))
+			{
+				GameObjectManager::get()->createObject(GameObjectManager::PCUBE, nullptr, 0);//, Vector3D(0, 0, 0), Vector3D(0, 0, 0), Vector3D(1, 1, 1));
+			}
+			if (ImGui::MenuItem("Physics Plane"))
+			{
+				GameObjectManager::get()->createObject(GameObjectManager::PPLANE, nullptr, 0);//, Vector3D(0, 0, 0), Vector3D(0, 0, 0), Vector3D(1, 1, 1));
 			}
 			ImGui::EndMenu();
 		}

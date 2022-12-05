@@ -1,7 +1,7 @@
 #include "Camera.h"
 #include <iostream>
 
-Camera::Camera(string name):GameObject(name)
+Camera::Camera(string name) :GameObject(name, PrimitiveType::CAMERA)
 {
 	this->setPos(0, 0, -2);
 	InputSystem::get()->addListener(this);
@@ -99,6 +99,8 @@ void Camera::onKeyUp(int key)
 
 void Camera::onMouseMove(const Point& mousePos)
 {
+	if (this->rmd)
+	{
 		Vector3D localRot = this->getLocalRotation();
 		float x = localRot.m_x;
 		float y = localRot.m_y;
@@ -111,6 +113,7 @@ void Camera::onMouseMove(const Point& mousePos)
 		this->setRot(x, y, z);
 
 		this->updateViewMatrix();
+	}
 }
 
 void Camera::onLMD(const Point& mousePos)
@@ -123,8 +126,10 @@ void Camera::onLMU(const Point& mousePos)
 
 void Camera::onRMD(const Point& mousePos)
 {
+	this->rmd = true;
 }
 
 void Camera::onRMU(const Point& mousePos)
 {
+	this->rmd = false;
 }

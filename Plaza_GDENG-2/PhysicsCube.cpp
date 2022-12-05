@@ -1,7 +1,7 @@
 #include "PhysicsCube.h"
 #include "Math.h"
 
-PhysicsCube::PhysicsCube(string name, void* shaderByteCode, size_t sizeShader): Cube(name, shaderByteCode, sizeShader)
+PhysicsCube::PhysicsCube(string name, void* shaderByteCode, size_t sizeShader): Cube(name, shaderByteCode, sizeShader, PrimitiveType::PCUBE)
 {
 	srand(time(NULL));
 	float x = float(rand()) / float(RAND_MAX) * (5.0f - -1.0f) + -1.0f;

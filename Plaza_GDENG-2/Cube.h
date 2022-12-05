@@ -15,7 +15,7 @@
 class Cube : public GameObject
 {
 public:
-	Cube(string name, void* shaderByteCode, size_t sizeShader);
+	Cube(string name, void* shaderByteCode, size_t sizeShader, PrimitiveType type);
 	~Cube();
 
 	void update(float deltaTime) override;

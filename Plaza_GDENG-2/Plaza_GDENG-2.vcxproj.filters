@@ -43,21 +43,6 @@
     <Filter Include="GameEngine\GraphicsEngine\IndexBuffer">
       <UniqueIdentifier>{f5af8464-0724-45f3-b33f-2bf89af59783}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\Primitives">
-      <UniqueIdentifier>{0e3cb793-13a6-4193-84f0-df9c5872ff75}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\Primitives\Quad">
-      <UniqueIdentifier>{d49d7ea9-5950-438c-a742-5e59bb211c6b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\Primitives\GameObject">
-      <UniqueIdentifier>{a81f4152-9ef5-40a4-bac0-f6bf65047bea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\Primitives\Cube">
-      <UniqueIdentifier>{88d17c0f-16ea-485b-ba16-190ca4def64f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\Primitives\Plane">
-      <UniqueIdentifier>{80e8adc9-c74a-4483-911c-8a02af37297c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\GraphicsEngine\Camera">
       <UniqueIdentifier>{a3886869-0e1a-47b3-bb0e-a1e28237ea27}</UniqueIdentifier>
     </Filter>
@@ -76,17 +61,41 @@
     <Filter Include="GameEngine\GraphicsEngine\ResourceManager\MeshManager">
       <UniqueIdentifier>{c61d3f0f-22d5-4d12-a2de-c89e6ba9b2ed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\Primitives\OBJs">
-      <UniqueIdentifier>{0349b3e5-36d9-4ea6-9420-702d5899ff7c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\PhysicsSystem">
       <UniqueIdentifier>{ff6f515a-9ff0-4df5-ad90-f72f6e4c5a9a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\Primitives\PhysicsCube">
+    <Filter Include="GameEngine\Backend">
+      <UniqueIdentifier>{94726065-144d-4da5-91e0-fdd2b930572a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject">
+      <UniqueIdentifier>{598cc9f1-a5c6-4e94-bc85-173e77da341f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives">
+      <UniqueIdentifier>{0e3cb793-13a6-4193-84f0-df9c5872ff75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives\Quad">
+      <UniqueIdentifier>{d49d7ea9-5950-438c-a742-5e59bb211c6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives\GameObject">
+      <UniqueIdentifier>{a81f4152-9ef5-40a4-bac0-f6bf65047bea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives\Cube">
+      <UniqueIdentifier>{88d17c0f-16ea-485b-ba16-190ca4def64f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives\Plane">
+      <UniqueIdentifier>{80e8adc9-c74a-4483-911c-8a02af37297c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives\OBJs">
+      <UniqueIdentifier>{0349b3e5-36d9-4ea6-9420-702d5899ff7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives\PhysicsCube">
       <UniqueIdentifier>{4e0ef4cb-b9e0-430a-aa1b-a79e753f6462}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\Primitives\PhysicsPlane">
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives\PhysicsPlane">
       <UniqueIdentifier>{f74bfd5d-8341-4c65-92bb-fdedc0e15c00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\FileSystem">
+      <UniqueIdentifier>{13c7d03b-0fb6-4931-a493-fc1e7e37515e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -121,7 +130,7 @@
       <Filter>GameEngine\GraphicsEngine\ConstantBuffer</Filter>
     </ClCompile>
     <ClCompile Include="Quad.cpp">
-      <Filter>GameEngine\GraphicsEngine\Primitives\Quad</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\Quad</Filter>
     </ClCompile>
     <ClCompile Include="EngineTime.cpp">
       <Filter>GameEngine\EngineTime</Filter>
@@ -133,13 +142,13 @@
       <Filter>GameEngine\GraphicsEngine\IndexBuffer</Filter>
     </ClCompile>
     <ClCompile Include="GameObject.cpp">
-      <Filter>GameEngine\GraphicsEngine\Primitives\GameObject</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Cube.cpp">
-      <Filter>GameEngine\GraphicsEngine\Primitives\Cube</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\Cube</Filter>
     </ClCompile>
     <ClCompile Include="Plane.cpp">
-      <Filter>GameEngine\GraphicsEngine\Primitives\Plane</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\Plane</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>GameEngine\GraphicsEngine\Camera</Filter>
@@ -202,13 +211,13 @@
       <Filter>GameEngine\GraphicsEngine\ResourceManager\MeshManager</Filter>
     </ClCompile>
     <ClCompile Include="OBJ.cpp">
-      <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\OBJs</Filter>
     </ClCompile>
     <ClCompile Include="OBJa.cpp">
-      <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\OBJs</Filter>
     </ClCompile>
     <ClCompile Include="OBJb.cpp">
-      <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\OBJs</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsSystem.cpp">
       <Filter>GameEngine\PhysicsSystem</Filter>
@@ -223,10 +232,22 @@
       <Filter>GameEngine\PhysicsSystem</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsCube.cpp">
-      <Filter>GameEngine\GraphicsEngine\Primitives\PhysicsCube</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\PhysicsCube</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsPlane.cpp">
-      <Filter>GameEngine\GraphicsEngine\Primitives\PhysicsPlane</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\PhysicsPlane</Filter>
+    </ClCompile>
+    <ClCompile Include="StateScreen.cpp">
+      <Filter>GameEngine\UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineBackend.cpp">
+      <Filter>GameEngine\Backend</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneWriter.cpp">
+      <Filter>GameEngine\FileSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -258,7 +279,7 @@
       <Filter>GameEngine\GraphicsEngine\ConstantBuffer</Filter>
     </ClInclude>
     <ClInclude Include="Quad.h">
-      <Filter>GameEngine\GraphicsEngine\Primitives\Quad</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\Quad</Filter>
     </ClInclude>
     <ClInclude Include="Vector3D.h">
       <Filter>GameEngine\Math</Filter>
@@ -276,13 +297,13 @@
       <Filter>GameEngine\GraphicsEngine\IndexBuffer</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
-      <Filter>GameEngine\GraphicsEngine\Primitives\GameObject</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Cube.h">
-      <Filter>GameEngine\GraphicsEngine\Primitives\Cube</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\Cube</Filter>
     </ClInclude>
     <ClInclude Include="Plane.h">
-      <Filter>GameEngine\GraphicsEngine\Primitives\Plane</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\Plane</Filter>
     </ClInclude>
     <ClInclude Include="InputListener.h">
       <Filter>GameEngine\InputSystem</Filter>
@@ -366,13 +387,13 @@
       <Filter>GameEngine\Math</Filter>
     </ClInclude>
     <ClInclude Include="OBJ.h">
-      <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\OBJs</Filter>
     </ClInclude>
     <ClInclude Include="OBJa.h">
-      <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\OBJs</Filter>
     </ClInclude>
     <ClInclude Include="OBJb.h">
-      <Filter>GameEngine\GraphicsEngine\Primitives\OBJs</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\OBJs</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsSystem.h">
       <Filter>GameEngine\PhysicsSystem</Filter>
@@ -387,10 +408,22 @@
       <Filter>GameEngine\PhysicsSystem</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsCube.h">
-      <Filter>GameEngine\GraphicsEngine\Primitives\PhysicsCube</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\PhysicsCube</Filter>
     </ClInclude>
     <ClInclude Include="PhysicsPlane.h">
-      <Filter>GameEngine\GraphicsEngine\Primitives\PhysicsPlane</Filter>
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\PhysicsPlane</Filter>
+    </ClInclude>
+    <ClInclude Include="StateScreen.h">
+      <Filter>GameEngine\UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineBackend.h">
+      <Filter>GameEngine\Backend</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneWriter.h">
+      <Filter>GameEngine\FileSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

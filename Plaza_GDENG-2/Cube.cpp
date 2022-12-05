@@ -4,7 +4,7 @@
 #include "SwapChain.h"
 #include <iostream>
 
-Cube::Cube(string name, void* shaderByteCode, size_t sizeShader):GameObject(name)
+Cube::Cube(string name, void* shaderByteCode, size_t sizeShader, PrimitiveType type) :GameObject(name, PrimitiveType::CUBE)
 {
 	std::string path = "Assets/Textures/brick.png";
 	std::wstring wPath = wstring(path.begin(), path.end());

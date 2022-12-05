@@ -28,5 +28,6 @@ public:
 	virtual void onRMU(const Point& mousePos) override;
 private:
 	Matrix4x4 localMatrix;
+	bool rmd = false;
 };
 

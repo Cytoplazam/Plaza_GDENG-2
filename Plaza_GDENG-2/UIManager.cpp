@@ -27,6 +27,10 @@ UIManager::UIManager(HWND hwnd)
 	ProfilerScreen* profilerScreen = new ProfilerScreen();
 	this->uiTable[uiNames.PROFILER_SCREEN] = profilerScreen;
 	this->uiList.push_back(profilerScreen);
+
+	StateScreen* stateScreen = new StateScreen();
+	this->uiTable[uiNames.STATE_SCREEN] = stateScreen;
+	this->uiList.push_back(stateScreen);
 }
 
 UIManager::~UIManager()
@@ -68,6 +72,16 @@ void UIManager::hideColor()
 	showColor = false;
 }
 
+void UIManager::showEState()
+{
+	showState = true;
+}
+
+void UIManager::hideState()
+{
+	showState = false;
+}
+
 void UIManager::drawUI()
 {
 	ImGui_ImplDX11_NewFrame();
@@ -85,9 +99,23 @@ void UIManager::drawUI()
 		{
 			continue;
 		}
+		if (this->uiList[i]->getName() == "State" && !showState)
+		{
+			continue;
+		}
 		this->uiList[i]->drawUI();
 	}
 
 	ImGui::Render();
 	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+}
+
+bool UIManager::drawCube()
+{
+	return cube;
+}
+
+bool UIManager::drawPlane()
+{
+	return plane;
 }

@@ -21,7 +21,9 @@
 #include "Texture.h"
 #include "TextureManager.h"
 #include "MeshManager.h"
+#include "SceneWriter.h"
 #include "BaseComponentSystem.h"
+#include "GameObjectManager.h"
 #include "PhysicsSystem.h"
 #include "UIManager.h"
 #include <iostream>

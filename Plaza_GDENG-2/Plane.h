@@ -13,7 +13,7 @@
 class Plane : public GameObject
 {
 public:
-	Plane(string name, void* shaderByteCode, size_t sizeShader);
+	Plane(string name, void* shaderByteCode, size_t sizeShader, PrimitiveType type);
 	~Plane();
 
 	void update(float deltaTime) override;

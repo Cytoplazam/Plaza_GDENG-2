@@ -4,7 +4,7 @@
 #include "SwapChain.h"
 #include <iostream>
 
-Plane::Plane(string name, void* shaderByteCode, size_t sizeShader):GameObject(name)
+Plane::Plane(string name, void* shaderByteCode, size_t sizeShader, PrimitiveType type) :GameObject(name, PrimitiveType::PLANE)
 {
 	//mWorldCam.setTranslation(Vector3D(0, 1, -2));
 	//this->ComputeLocalMatrix();
