@@ -1,6 +1,8 @@
 #pragma once
 #include "GameObject.h"
 #include "GraphicsEngine.h"
+#include "Cube.h"
+#include "Plane.h"
 #include "PhysicsCube.h"
 #include "PhysicsPlane.h"
 #include "Vector3D.h"
@@ -47,7 +49,9 @@ private:
 
 	static GameObjectManager* sharedInstance;
 
+	std::vector<Cube*> Cubes;
 	std::vector<PhysicsCube*> pCubes;
+	std::vector<Plane*> Planes;
 	std::vector<PhysicsPlane*> pPlanes;
 	std::vector<GameObject*> objects;
 

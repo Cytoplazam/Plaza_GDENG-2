@@ -12,16 +12,12 @@ typedef std::fstream FileWriter;
 class SceneWriter
 {
 public:
-	/*static SceneWriter* get();
-	static void init();
-	static void destroy();*/
-
-	SceneWriter();
+	SceneWriter(string dir);
 	~SceneWriter();
 	
 	void WriteToFile();
+
 private:
-	static SceneWriter* sharedInstance;
-	std::string dir;
+	string dir;
 };
 

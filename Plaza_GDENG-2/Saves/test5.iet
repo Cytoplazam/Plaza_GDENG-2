@@ -1,0 +1,15 @@
+plane
+Type: 3
+Position: 0 0 0
+Rotation: 0 0 0
+Scale: 1 1 1
+Cube
+Type: 1
+Position: 2 2 2
+Rotation: 2 2 2
+Scale: 1 1 1
+Cube
+Type: 1
+Position: 5 5 5
+Rotation: 5 5 5
+Scale: 1 1 1

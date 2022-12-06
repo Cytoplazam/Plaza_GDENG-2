@@ -1,21 +1,13 @@
 #include "SceneWriter.h"
 
-//SceneWriter* SceneWriter::sharedInstance = NULL;
-//
-//SceneWriter* SceneWriter::get()
-//{
-//	return sharedInstance;
-//}
-//
-//void SceneWriter::init()
-//{
-//	sharedInstance = new SceneWriter;
-//}
-//
-//void SceneWriter::destroy()
-//{
-//	delete sharedInstance;
-//}
+SceneWriter::SceneWriter(string dir)
+{
+	this->dir = dir;
+}
+
+SceneWriter::~SceneWriter()
+{
+}
 
 void SceneWriter::WriteToFile()
 {

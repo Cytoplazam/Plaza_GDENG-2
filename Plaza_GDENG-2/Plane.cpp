@@ -116,6 +116,9 @@ Plane::Plane(string name, void* shaderByteCode, size_t sizeShader, PrimitiveType
 	cbData.time = 0;
 	this->cb = GraphicsEngine::get()->createConstantBuffer();
 	this->cb->load(&cbData, sizeof(constant));
+
+	this->setPos(Vector3D(0.0f, -5.0f, 3.0f));
+	this->setScale(Vector3D(50.0f, 1.0f, 50.0f));
 }
 
 Plane::~Plane()

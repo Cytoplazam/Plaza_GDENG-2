@@ -106,6 +106,30 @@ void GameObjectManager::createObject(PrimitiveType type, void* shaderByteCode, s
 			this->addObject(pcubeObject);
 		}
 	}
+	if (type == PrimitiveType::CUBE)
+	{
+		for (int i = 0; i < 2; i++)
+		{
+			Cube* cubeObject = new Cube("Cube", shaderByteCode, sizeShader, GameObject::CUBE);
+			if (i == 0)
+			{
+				cubeObject->setPos(Vector3D(2, 2, 2));
+				cubeObject->setRot(Vector3D(2, 2, 2));
+			}
+			else
+			{
+				cubeObject->setPos(Vector3D(5, 5, 5));
+				cubeObject->setRot(Vector3D(5, 5, 5));
+			}
+				
+			this->addObject(cubeObject);
+		}
+	}
+	if (type == PrimitiveType::PLANE)
+	{
+			Plane* plane = new Plane("plane", shaderByteCode, sizeShader, GameObject::PLANE);
+			this->addObject(plane);
+	}
 	if (type == PrimitiveType::PPLANE)
 	{
 		for (int i = 0; i < 1; i++)

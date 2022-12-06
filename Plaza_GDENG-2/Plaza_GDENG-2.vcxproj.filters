@@ -249,6 +249,9 @@
     <ClCompile Include="SceneWriter.cpp">
       <Filter>GameEngine\FileSystem</Filter>
     </ClCompile>
+    <ClCompile Include="SceneReader.cpp">
+      <Filter>GameEngine\FileSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppWindow.h">
@@ -423,6 +426,12 @@
       <Filter>GameEngine\GraphicsEngine\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="SceneWriter.h">
+      <Filter>GameEngine\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="imfilebrowser.h">
+      <Filter>GameEngine\IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneReader.h">
       <Filter>GameEngine\FileSystem</Filter>
     </ClInclude>
   </ItemGroup>
