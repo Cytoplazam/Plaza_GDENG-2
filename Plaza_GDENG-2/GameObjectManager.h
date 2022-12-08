@@ -20,7 +20,8 @@ public:
 	enum PrimitiveType
 	{
 		CUBE, PCUBE,
-		PLANE, PPLANE
+		PLANE, PPLANE,
+		SPHERE, OBJ
 	};
 
 	static GameObjectManager* get();
@@ -32,7 +33,8 @@ public:
 	void updateAll();
 	void renderAll(int h, int w, float fwd, float rgt);
 	void addObject(GameObject* gameObj);
-	void createObject(PrimitiveType type, void* shaderByteCode, size_t sizeShader);// Vector3D rot, Vector3D pos, Vector3D scale);
+	void createObject(PrimitiveType type, void* shaderByteCode, size_t sizeShader);
+	void createObjectFromFile(GameObject::PrimitiveType type, void* shaderByteCode, size_t sizeShader, string name, Vector3D rot, Vector3D pos, Vector3D scale);
 	void delObject(GameObject* gameObj);
 	void delObjectByName(string name);
 	void setSelectedObject(string name);

@@ -27,7 +27,7 @@ public:
 		CAMERA,
 		CUBE, PCUBE, 
 		PLANE, PPLANE,
-		OBJ,
+		SPHERE, OBJ,
 
 	};
 

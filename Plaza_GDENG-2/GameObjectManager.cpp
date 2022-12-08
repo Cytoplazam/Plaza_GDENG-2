@@ -83,7 +83,7 @@ void GameObjectManager::createObject(PrimitiveType type, void* shaderByteCode, s
 
 	if (type == PrimitiveType::PCUBE)
 	{
-		for (int i = 0; i < 20; i++)
+		for (int i = 0; i < 3; i++)
 		{
 			//float x = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
 			//float y = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
@@ -108,18 +108,31 @@ void GameObjectManager::createObject(PrimitiveType type, void* shaderByteCode, s
 	}
 	if (type == PrimitiveType::CUBE)
 	{
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < 3; i++)
 		{
-			Cube* cubeObject = new Cube("Cube", shaderByteCode, sizeShader, GameObject::CUBE);
+			string name;
+
+			if (i > 0)
+				name = "Cube(" + to_string(i) + ")";
+			else
+				name = "Cube";
+				
+			
+			Cube* cubeObject = new Cube(name, shaderByteCode, sizeShader, GameObject::CUBE);
 			if (i == 0)
 			{
 				cubeObject->setPos(Vector3D(2, 2, 2));
 				cubeObject->setRot(Vector3D(2, 2, 2));
 			}
-			else
+			else if (i == 1)
 			{
 				cubeObject->setPos(Vector3D(5, 5, 5));
 				cubeObject->setRot(Vector3D(5, 5, 5));
+			}
+			else 
+			{
+				cubeObject->setPos(Vector3D(8, 8, 8));
+				cubeObject->setRot(Vector3D(8, 8, 8));
 			}
 				
 			this->addObject(cubeObject);
@@ -127,7 +140,7 @@ void GameObjectManager::createObject(PrimitiveType type, void* shaderByteCode, s
 	}
 	if (type == PrimitiveType::PLANE)
 	{
-			Plane* plane = new Plane("plane", shaderByteCode, sizeShader, GameObject::PLANE);
+			Plane* plane = new Plane("Plane", shaderByteCode, sizeShader, GameObject::PLANE);
 			this->addObject(plane);
 	}
 	if (type == PrimitiveType::PPLANE)
@@ -150,6 +163,57 @@ void GameObjectManager::createObject(PrimitiveType type, void* shaderByteCode, s
 	GraphicsEngine::get()->compileVertexShader(L"VertexMeshLayoutShader.hlsl", "vsmain", &shaderByteCode, &sizeShader);
 	::memcpy(m_mesh_layout_byte_code, shaderByteCode, sizeShader);
 	m_mesh_layout_size = sizeShader;
+}
+
+void GameObjectManager::createObjectFromFile(GameObject::PrimitiveType type, void* shaderByteCode, size_t sizeShader, string name, Vector3D rot, Vector3D pos, Vector3D scale)
+{
+	GraphicsEngine::get()->compileVertexShader(L"VertexShaderTex.hlsl", "vsmain", &shaderByteCode, &sizeShader);
+
+	m_vst = GraphicsEngine::get()->createVertexShader(shaderByteCode, sizeShader);
+
+	if (type == GameObject::PrimitiveType::PCUBE)
+	{
+		PhysicsCube* pcubeObject = new PhysicsCube(name, shaderByteCode, sizeShader);
+		pcubeObject->setScale(scale);
+		pcubeObject->setPos(pos);
+		pcubeObject->setRot(rot);
+		this->addObject(pcubeObject);
+	}
+	if (type == GameObject::PrimitiveType::CUBE)
+	{
+		Cube* cubeObject = new Cube(name, shaderByteCode, sizeShader, GameObject::CUBE);
+		cubeObject->setScale(scale);
+		cubeObject->setPos(pos);
+		cubeObject->setRot(rot);
+		this->addObject(cubeObject);
+	}
+	if (type == GameObject::PrimitiveType::PLANE)
+	{
+		Plane* plane = new Plane(name, shaderByteCode, sizeShader, GameObject::PLANE);
+		plane->setScale(scale);
+		plane->setPos(pos);
+		plane->setRot(rot);
+		this->addObject(plane);
+	}
+	if (type == GameObject::PrimitiveType::PPLANE)
+	{
+		PhysicsPlane* pPlane = new PhysicsPlane(name, shaderByteCode, sizeShader);
+		pPlane->setScale(scale);
+		pPlane->setPos(pos);
+		pPlane->setRot(rot);
+		this->addObject(pPlane);
+	}
+
+
+	GraphicsEngine::get()->compilePixelShader(L"PixelShaderTex.hlsl", "psmain", &shaderByteCode, &sizeShader);
+
+	m_pst = GraphicsEngine::get()->createPixelShader(shaderByteCode, sizeShader);
+
+	GraphicsEngine::get()->compileVertexShader(L"VertexMeshLayoutShader.hlsl", "vsmain", &shaderByteCode, &sizeShader);
+	::memcpy(m_mesh_layout_byte_code, shaderByteCode, sizeShader);
+	m_mesh_layout_size = sizeShader;
+	
+	//std::cout << "Created a " << name << " with Rotation: " << to_string(rot.m_x) << ", " << to_string(rot.m_y) << ", " << to_string(rot.m_y);
 }
 
 void GameObjectManager::delObject(GameObject* gameObj)

@@ -1,0 +1,20 @@
+Cube
+Type: 1
+Position: 2 2 2
+Rotation: 2 2 2
+Scale: 1 1 1
+plane
+Type: 3
+Position: 0 -5 3
+Rotation: 0 0 0
+Scale: 50 1 50
+PhysicsPlane
+Type: 4
+Position: 0 -5 3
+Rotation: 0 0 0
+Scale: 50 1 50
+PhysicsCube
+Type: 2
+Position: 3.70559 4 1.89022
+Rotation: 0 0 0
+Scale: 1 1 1

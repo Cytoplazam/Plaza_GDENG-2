@@ -1,6 +1,6 @@
 #include "PhysicsPlane.h"
 
-PhysicsPlane::PhysicsPlane(string name, void* shaderByteCode, size_t sizeShader): Cube(name, shaderByteCode, sizeShader, PrimitiveType::PPLANE)
+PhysicsPlane::PhysicsPlane(string name, void* shaderByteCode, size_t sizeShader): Cube(name, shaderByteCode, sizeShader, PrimitiveType::PLANE)
 {
 	std::string path = "Assets/Textures/wood.jpg";
 	std::wstring wPath = wstring(path.begin(), path.end());
@@ -113,6 +113,8 @@ PhysicsPlane::PhysicsPlane(string name, void* shaderByteCode, size_t sizeShader)
 	this->setPos(Vector3D(0.0f, -5.0f, 3.0f));
 	this->setScale(Vector3D(50.0f, 1.0f, 50.0f));
 	
+	this->type = PrimitiveType::PPLANE;
+
 	this->ComputeLocalMatrix();
 	this->attachComponent(new PhysicsComponent(("PhysicsComponent"), this));
 

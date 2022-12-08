@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include "GameObject.h"
 #include "GameObjectManager.h"
 #include "Vector3D.h"
@@ -8,8 +9,6 @@
 #include <iostream>
 
 using namespace std;
-
-typedef std::fstream FileReader;
 
 class SceneReader
 {

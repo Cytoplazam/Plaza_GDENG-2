@@ -11,8 +11,8 @@ SceneWriter::~SceneWriter()
 
 void SceneWriter::WriteToFile()
 {
-	std::string fileDir = this->dir + ".iet";
-	if (this->dir.find(".iet") != std::string::npos)
+	std::string fileDir = this->dir + ".xml";
+	if (this->dir.find(".xml") != std::string::npos)
 	{
 		fileDir = this->dir;
 	}
@@ -24,18 +24,39 @@ void SceneWriter::WriteToFile()
 
 	GameObjectManager::List allObjects = GameObjectManager::get()->getAllObjects();
 
+	sceneFile << "<GameObjects>" << std::endl;
+
 	for (int i = 0; i < allObjects.size(); i++)
 	{
-		sceneFile << allObjects[i]->getName() << std::endl;
+		sceneFile << "<GameObject>" << std::endl;
+
+		sceneFile << "<Name>" + allObjects[i]->getName() + "</Name>" << std::endl;
 		Vector3D pos = allObjects[i]->getLocalPosition();
 		Vector3D rot = allObjects[i]->getLocalRotation();
 		Vector3D scale = allObjects[i]->getLocalScale();
 
-		sceneFile << "Type: " << allObjects[i]->getType() << std::endl;
-		sceneFile << "Position: " << pos.m_x << " " << pos.m_y << " " << pos.m_z << std::endl;
-		sceneFile << "Rotation: " << rot.m_x << " " << rot.m_y << " " << rot.m_z << std::endl;
-		sceneFile << "Scale: " << scale.m_x << " " << scale.m_y << " " << scale.m_z << std::endl;
+		
+		sceneFile << "<Type>" << allObjects[i]->getType() << "</Type>" << std::endl;
+		sceneFile << "<Position>" << std::endl;
+		sceneFile << "<x>" << pos.m_x << "</x>" << std::endl;
+		sceneFile << "<y>" << pos.m_y << "</y>" << std::endl;
+		sceneFile << "<z>" << pos.m_z << "</z>" << std::endl;
+		sceneFile << "</Position>" << std::endl;
+		sceneFile << "<Rotation>" << std::endl;
+		sceneFile << "<x>" << rot.m_x << "</x>" << std::endl;
+		sceneFile << "<y>" << rot.m_y << "</y>" << std::endl;
+		sceneFile << "<z>" << rot.m_z << "</z>" << std::endl;
+		sceneFile << "</Rotation>" << std::endl;
+		sceneFile << "<Scale>" << std::endl;
+		sceneFile << "<x>" << scale.m_x << "</x>" << std::endl;
+		sceneFile << "<y>" << scale.m_y << "</y>" << std::endl;
+		sceneFile << "<z>" << scale.m_z << "</z>" << std::endl;
+		sceneFile << "</Scale>" << std::endl;
+
+		sceneFile << "</GameObject>" << std::endl;
 	}
+
+	sceneFile << "</GameObjects>" << std::endl;
 	
 	sceneFile.close();
 }

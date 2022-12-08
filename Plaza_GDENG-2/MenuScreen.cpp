@@ -7,14 +7,14 @@ MenuScreen::MenuScreen():AUIScreen("Menu")
 	saveFileDialog = ImGui::FileBrowser(ImGuiFileBrowserFlags_EnterNewFilename);
 
 	saveFileDialog.SetTitle("Save File");
-	saveFileDialog.SetTypeFilters({ ".iet" });
+	saveFileDialog.SetTypeFilters({ ".xml" });
 
 	//ImGui::FileBrowser loadFileDialog;
 
-	loadFileDialog = ImGui::FileBrowser(ImGuiFileBrowserFlags_EnterNewFilename);
+	loadFileDialog = ImGui::FileBrowser();
 
 	loadFileDialog.SetTitle("Open File");
-	loadFileDialog.SetTypeFilters({ ".iet" });
+	loadFileDialog.SetTypeFilters({ ".xml" });
 }
 
 MenuScreen::~MenuScreen()
@@ -59,41 +59,41 @@ void MenuScreen::drawUI()
 		{
 			if (ImGui::MenuItem("Cube"))
 			{
-				GameObjectManager::get()->createObject(GameObjectManager::CUBE, nullptr, 0);//, Vector3D(0, 0, 0), Vector3D(0, 0, 0), Vector3D(1, 1, 1));
+				GameObjectManager::get()->createObject(GameObjectManager::CUBE, nullptr, 0);
 			}
 			if (ImGui::MenuItem("Physics Cube"))
 			{
-				GameObjectManager::get()->createObject(GameObjectManager::PCUBE, nullptr, 0);//, Vector3D(0, 0, 0), Vector3D(0, 0, 0), Vector3D(1, 1, 1));
+				GameObjectManager::get()->createObject(GameObjectManager::PCUBE, nullptr, 0);
 			}
 			if (ImGui::MenuItem("Plane"))
 			{
-				GameObjectManager::get()->createObject(GameObjectManager::PLANE, nullptr, 0);//, Vector3D(0, 0, 0), Vector3D(0, 0, 0), Vector3D(1, 1, 1));
+				GameObjectManager::get()->createObject(GameObjectManager::PLANE, nullptr, 0);
 			}
 			if (ImGui::MenuItem("Physics Plane"))
 			{
-				GameObjectManager::get()->createObject(GameObjectManager::PPLANE, nullptr, 0);//, Vector3D(0, 0, 0), Vector3D(0, 0, 0), Vector3D(1, 1, 1));
+				GameObjectManager::get()->createObject(GameObjectManager::PPLANE, nullptr, 0);
 			}
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();
 	}
 
-	saveFileDialog.Display();
+	this->saveFileDialog.Display();
+	this->loadFileDialog.Display();
 
-	if (saveFileDialog.HasSelected())
+	if (this->saveFileDialog.HasSelected())
 	{
-		//std::cout << "Selected filename: " << saveFileDialog.GetSelected().string() << std::endl;
-		//saveFileDialog.ClearSelected();
 		SceneWriter writer = SceneWriter(this->saveFileDialog.GetSelected().string());
 		writer.WriteToFile();
 		this->saveFileDialog.ClearSelected();
 		this->saveFileDialog.Close();
 	}
-
-	loadFileDialog.Display();
-
-	if (loadFileDialog.HasSelected())
+	else if (this->loadFileDialog.HasSelected())
 	{
+		SceneReader reader = SceneReader(this->loadFileDialog.GetSelected().string());
+		reader.readFromFile();
+		this->loadFileDialog.ClearSelected();
+		this->loadFileDialog.Close();
 	}
 	//ImGui::End();
 }

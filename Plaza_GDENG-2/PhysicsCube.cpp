@@ -9,7 +9,7 @@ PhysicsCube::PhysicsCube(string name, void* shaderByteCode, size_t sizeShader): 
 	float z = float(rand()) / float(RAND_MAX) * (5.0f - -1.0f) + -1.0f;
 	this->setPos(Vector3D(x, y, z));
 	this->setScale(Vector3D(1.0f, 1.0f, 1.0f));
-
+	this->type = PrimitiveType::PCUBE;
 	this->ComputeLocalMatrix();
 	this->attachComponent(new PhysicsComponent(("PhysicsComponent"), this));
 }
