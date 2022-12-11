@@ -103,6 +103,15 @@
     <Filter Include="GameEngine\PugiXML">
       <UniqueIdentifier>{727f5ef5-81bf-49b7-a21b-809b2de759e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives\PhysicsSphere">
+      <UniqueIdentifier>{a9437b53-82fc-4bef-89b5-466e4e30976d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives\Capsule">
+      <UniqueIdentifier>{07e071ce-02fc-484a-aa78-1da07b4bfa28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\GameObject\Primitives\PhysicsCapsule">
+      <UniqueIdentifier>{625aa86a-ea7d-4c07-be0d-515ec92b63be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -266,6 +275,21 @@
     </ClCompile>
     <ClCompile Include="pugixml.cpp">
       <Filter>GameEngine\PugiXML</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsSphere.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\PhysicsSphere</Filter>
+    </ClCompile>
+    <ClCompile Include="InspectorScreen.cpp">
+      <Filter>GameEngine\UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="HeirarchyScreen.cpp">
+      <Filter>GameEngine\UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Capsule.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\Capsule</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsCapsule.cpp">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\PhysicsCapsule</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -460,6 +484,21 @@
     </ClInclude>
     <ClInclude Include="pugixml.hpp">
       <Filter>GameEngine\PugiXML</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsSphere.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\PhysicsSphere</Filter>
+    </ClInclude>
+    <ClInclude Include="InspectorScreen.h">
+      <Filter>GameEngine\UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="HeirarchyScreen.h">
+      <Filter>GameEngine\UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Capsule.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\Capsule</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsCapsule.h">
+      <Filter>GameEngine\GraphicsEngine\GameObject\Primitives\PhysicsCapsule</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

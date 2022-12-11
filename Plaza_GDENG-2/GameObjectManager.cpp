@@ -83,75 +83,139 @@ void GameObjectManager::createObject(PrimitiveType type, void* shaderByteCode, s
 
 	if (type == PrimitiveType::PCUBE)
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 1; i++)
 		{
-			//float x = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
-			//float y = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
-			//float z = float(rand()) / float(RAND_MAX) * (5.0f - -5.0f) + -5.0f;
+			string name;
 
-			PhysicsCube* pcubeObject = new PhysicsCube("PhysicsCube", shaderByteCode, sizeShader);
-			//cubeObject->setAnimSpeed(float(rand()) / float(RAND_MAX) * (3.75f - -3.75f) + -3.75f);
-			/*if (i == 0)
-				cubeObject->setPos(Vector3D(0, 0.9f, 0));
-			else if (i == 1)
-				cubeObject->setPos(Vector3D(-1.5f, 2.0f, 0));
-			else if (i == 2)
-				cubeObject->setPos(Vector3D(-1.5f, 3.0f, -2.0f));*/
-				//pcubeObject->setPos(Vector3D(0.0f, 0.0f, 3.0f));
-				//pcubeObject->setRot(Vector3D(0.0f, 0.0f, 0.0f));
-				//pcubeObject->setScale(Vector3D(1.0f, 1.0f, 1.0f));
-			/*pcubeObject->setScale(scale);
-			pcubeObject->setPos(pos);
-			pcubeObject->setRot(rot);*/
+			if (this->pCubes.size() > 0)
+				name = "PhysicsCube(" + to_string(this->pCubes.size()) + ")";
+			else
+				name = "PhysicsCube";
+
+			PhysicsCube* pcubeObject = new PhysicsCube(name, shaderByteCode, sizeShader);
+
 			this->addObject(pcubeObject);
+			this->pCubes.push_back(pcubeObject);
 		}
 	}
 	if (type == PrimitiveType::CUBE)
 	{
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 1; i++)
 		{
 			string name;
 
-			if (i > 0)
-				name = "Cube(" + to_string(i) + ")";
+			if (this->Cubes.size() > 0)
+				name = "Cube(" + to_string(this->Cubes.size()) + ")";
 			else
 				name = "Cube";
-				
 			
 			Cube* cubeObject = new Cube(name, shaderByteCode, sizeShader, GameObject::CUBE);
-			if (i == 0)
-			{
-				cubeObject->setPos(Vector3D(2, 2, 2));
-				cubeObject->setRot(Vector3D(2, 2, 2));
-			}
-			else if (i == 1)
-			{
-				cubeObject->setPos(Vector3D(5, 5, 5));
-				cubeObject->setRot(Vector3D(5, 5, 5));
-			}
-			else 
-			{
-				cubeObject->setPos(Vector3D(8, 8, 8));
-				cubeObject->setRot(Vector3D(8, 8, 8));
-			}
 				
 			this->addObject(cubeObject);
+			this->Cubes.push_back(cubeObject);
 		}
 	}
 	if (type == PrimitiveType::PLANE)
 	{
-			Plane* plane = new Plane("Plane", shaderByteCode, sizeShader, GameObject::PLANE);
+		for (int i = 0; i < 1; i++)
+		{
+			string name;
+
+			if (this->Planes.size() > 0)
+				name = "Plane(" + to_string(this->Planes.size()) + ")";
+			else
+				name = "Plane";
+
+			Plane* plane = new Plane(name, shaderByteCode, sizeShader, GameObject::PLANE);
+
 			this->addObject(plane);
+			this->Planes.push_back(plane);
+		}
+			
 	}
 	if (type == PrimitiveType::PPLANE)
 	{
 		for (int i = 0; i < 1; i++)
 		{
-			PhysicsPlane* pPlane = new PhysicsPlane("PhysicsPlane", shaderByteCode, sizeShader);
-			/*pPlane->setScale(scale);
-			pPlane->setPos(pos);
-			pPlane->setRot(rot);*/
+			string name;
+
+			if (this->pPlanes.size() > 0)
+				name = "PhysicsPlane(" + to_string(this->pPlanes.size()) + ")";
+			else
+				name = "PhysicsPlane";
+
+			PhysicsPlane* pPlane = new PhysicsPlane(name, shaderByteCode, sizeShader);
+
 			this->addObject(pPlane);
+			this->pPlanes.push_back(pPlane);
+		}
+	}
+	if (type == PrimitiveType::SPHERE)
+	{
+		for (int i = 0; i < 1; i++)
+		{
+			string name;
+
+			if (this->spheres.size() > 0)
+				name = "Sphere(" + to_string(this->spheres.size()) + ")";
+			else
+				name = "Sphere";
+
+			Sphere* sphere = new Sphere(name, shaderByteCode, sizeShader, 1, 24, 24, GameObject::SPHERE);
+
+			this->addObject(sphere);
+			this->spheres.push_back(sphere);
+		}
+	}
+	if (type == PrimitiveType::PSPHERE)
+	{
+		for (int i = 0; i < 1; i++)
+		{
+			string name;
+
+			if (this->pSpheres.size() > 0)
+				name = "PhysicsSphere(" + to_string(this->pSpheres.size()) + ")";
+			else
+				name = "PhysicsSphere";
+
+			PhysicsSphere* pSphere = new PhysicsSphere(name, shaderByteCode, sizeShader, 1, 24, 24, GameObject::PSPHERE);
+
+			this->addObject(pSphere);
+			this->pSpheres.push_back(pSphere);
+		}
+	}
+	if (type == PrimitiveType::CAPSULE)
+	{
+		for (int i = 0; i < 1; i++)
+		{
+			string name;
+
+			if (this->capsules.size() > 0)
+				name = "Capsule(" + to_string(this->capsules.size()) + ")";
+			else
+				name = "Capsule";
+
+			Capsule* capsule = new Capsule(name, shaderByteCode, sizeShader, 2, 1, GameObject::CAPSULE);
+
+			this->addObject(capsule);
+			this->capsules.push_back(capsule);
+		}
+	}
+	if (type == PrimitiveType::PCAPSULE)
+	{
+		for (int i = 0; i < 1; i++)
+		{
+			string name;
+
+			if (this->pCapsules.size() > 0)
+				name = "PhysicsCapsule(" + to_string(this->pCapsules.size()) + ")";
+			else
+				name = "PhysicsCapsule";
+
+			PhysicsCapsule* pCapsule = new PhysicsCapsule(name, shaderByteCode, sizeShader, 2, 1, GameObject::PCAPSULE);
+
+			this->addObject(pCapsule);
+			this->pCapsules.push_back(pCapsule);
 		}
 	}
 	
@@ -173,37 +237,132 @@ void GameObjectManager::createObjectFromFile(GameObject::PrimitiveType type, voi
 
 	if (type == GameObject::PrimitiveType::PCUBE)
 	{
-		PhysicsCube* pcubeObject = new PhysicsCube(name, shaderByteCode, sizeShader);
+		string tempName;
+
+		if (this->pCubes.size() > 0)
+			tempName = "PhysicsCube(" + to_string(this->pCubes.size()) + ")";
+		else
+			tempName = "PhysicsCube";
+
+		PhysicsCube* pcubeObject = new PhysicsCube(tempName, shaderByteCode, sizeShader);
 		pcubeObject->setScale(scale);
 		pcubeObject->setPos(pos);
 		pcubeObject->setRot(rot);
 		this->addObject(pcubeObject);
+		this->pCubes.push_back(pcubeObject);
 	}
 	if (type == GameObject::PrimitiveType::CUBE)
 	{
-		Cube* cubeObject = new Cube(name, shaderByteCode, sizeShader, GameObject::CUBE);
+		string tempName;
+
+		if (this->Cubes.size() > 0)
+			tempName = "Cube(" + to_string(this->Cubes.size()) + ")";
+		else
+			tempName = "Cube";
+
+		Cube* cubeObject = new Cube(tempName, shaderByteCode, sizeShader, GameObject::CUBE);
 		cubeObject->setScale(scale);
 		cubeObject->setPos(pos);
 		cubeObject->setRot(rot);
 		this->addObject(cubeObject);
+		this->Cubes.push_back(cubeObject);
 	}
 	if (type == GameObject::PrimitiveType::PLANE)
 	{
-		Plane* plane = new Plane(name, shaderByteCode, sizeShader, GameObject::PLANE);
+		string tempName;
+
+		if (this->Planes.size() > 0)
+			tempName = "Plane(" + to_string(this->Planes.size()) + ")";
+		else
+			tempName = "Plane";
+
+		Plane* plane = new Plane(tempName, shaderByteCode, sizeShader, GameObject::PLANE);
 		plane->setScale(scale);
 		plane->setPos(pos);
 		plane->setRot(rot);
 		this->addObject(plane);
+		this->Planes.push_back(plane);
 	}
 	if (type == GameObject::PrimitiveType::PPLANE)
 	{
-		PhysicsPlane* pPlane = new PhysicsPlane(name, shaderByteCode, sizeShader);
+		string tempName;
+
+		if (this->pPlanes.size() > 0)
+			tempName = "PhysicsPlane(" + to_string(this->pPlanes.size()) + ")";
+		else
+			tempName = "PhysicsPlane";
+
+		PhysicsPlane* pPlane = new PhysicsPlane(tempName, shaderByteCode, sizeShader);
 		pPlane->setScale(scale);
 		pPlane->setPos(pos);
 		pPlane->setRot(rot);
 		this->addObject(pPlane);
+		this->pPlanes.push_back(pPlane);
 	}
+	if (type == GameObject::PrimitiveType::SPHERE)
+	{
+		string tempName;
 
+		if (this->spheres.size() > 0)
+			tempName = "Sphere(" + to_string(this->spheres.size()) + ")";
+		else
+			tempName = "Sphere";
+
+		Sphere* sphere = new Sphere(tempName, shaderByteCode, sizeShader, 1, 24, 24, GameObject::SPHERE);
+		sphere->setScale(scale);
+		sphere->setPos(pos);
+		sphere->setRot(rot);
+		this->addObject(sphere);
+		this->spheres.push_back(sphere);
+	}
+	if (type == GameObject::PrimitiveType::PSPHERE)
+	{
+		string tempName;
+
+		if (this->pSpheres.size() > 0)
+			tempName = "PhysicsSphere(" + to_string(this->pSpheres.size()) + ")";
+		else
+			tempName = "PhysicsSphere";
+
+		PhysicsSphere* pSphere = new PhysicsSphere(tempName, shaderByteCode, sizeShader, 1, 24, 24, GameObject::PSPHERE);
+		pSphere->setScale(scale);
+		pSphere->setPos(pos);
+		pSphere->setRot(rot);
+		this->addObject(pSphere);
+		this->pSpheres.push_back(pSphere);
+	}
+	if (type == GameObject::PrimitiveType::CAPSULE)
+	{
+		string tempName;
+
+		if (this->capsules.size() > 0)
+			tempName = "Capsule(" + to_string(this->capsules.size()) + ")";
+		else
+			tempName = "Capsule";
+
+		Capsule* capsule = new Capsule(tempName, shaderByteCode, sizeShader, 2, 1, GameObject::CAPSULE);
+		capsule->setScale(scale);
+		capsule->setPos(pos);
+		capsule->setRot(rot);
+		this->addObject(capsule);
+		this->capsules.push_back(capsule);
+	}
+	if (type == GameObject::PrimitiveType::PCAPSULE)
+	{
+		string tempName;
+
+		if (this->pCapsules.size() > 0)
+			tempName = "PhysicsCapsule(" + to_string(this->pCapsules.size()) + ")";
+		else
+			tempName = "PhysicsCapsule";
+
+		PhysicsCapsule* pCapsule = new PhysicsCapsule(tempName, shaderByteCode, sizeShader, 2, 1, GameObject::PCAPSULE);
+		pCapsule->setScale(scale);
+		pCapsule->setPos(pos);
+		pCapsule->setRot(rot);
+		this->addObject(pCapsule);
+		this->pCapsules.push_back(pCapsule);
+	}
 
 	GraphicsEngine::get()->compilePixelShader(L"PixelShaderTex.hlsl", "psmain", &shaderByteCode, &sizeShader);
 
@@ -233,12 +392,9 @@ void GameObjectManager::delObjectByName(string name)
 	}
 }
 
-void GameObjectManager::setSelectedObject(string name)
-{
-}
-
 void GameObjectManager::setSelectedObject(GameObject* gameObj)
 {
+	this->selectedObj = gameObj;
 }
 
 GameObject* GameObjectManager::getSelectedObject()

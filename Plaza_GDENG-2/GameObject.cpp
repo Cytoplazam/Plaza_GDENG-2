@@ -55,6 +55,11 @@ void GameObject::setRot(Vector3D rot)
 	this->rot = rot;
 }
 
+void GameObject::changeName(string name)
+{
+	this->name = name;
+}
+
 Vector3D GameObject::getLocalRotation()
 {
 	return this->rot;

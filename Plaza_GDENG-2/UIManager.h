@@ -7,6 +7,8 @@
 #include "MenuScreen.h"
 #include "CreditsScreen.h"
 #include "StateScreen.h"
+#include "InspectorScreen.h"
+#include "HeirarchyScreen.h"
 #include "AUIScreen.h"
 #include <vector>
 #include <unordered_map>

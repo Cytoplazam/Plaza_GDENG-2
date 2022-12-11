@@ -73,6 +73,22 @@ void MenuScreen::drawUI()
 			{
 				GameObjectManager::get()->createObject(GameObjectManager::PPLANE, nullptr, 0);
 			}
+			if (ImGui::MenuItem("Sphere"))
+			{
+				GameObjectManager::get()->createObject(GameObjectManager::SPHERE, nullptr, 0);
+			}
+			if (ImGui::MenuItem("Physics Sphere"))
+			{
+				GameObjectManager::get()->createObject(GameObjectManager::PSPHERE, nullptr, 0);
+			}
+			if (ImGui::MenuItem("Capsule"))
+			{
+				GameObjectManager::get()->createObject(GameObjectManager::CAPSULE, nullptr, 0);
+			}
+			if (ImGui::MenuItem("Physics Capsule"))
+			{
+				GameObjectManager::get()->createObject(GameObjectManager::PCAPSULE, nullptr, 0);
+			}
 			ImGui::EndMenu();
 		}
 		ImGui::EndMainMenuBar();

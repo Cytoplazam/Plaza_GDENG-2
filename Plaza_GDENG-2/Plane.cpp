@@ -13,10 +13,10 @@ Plane::Plane(string name, void* shaderByteCode, size_t sizeShader, PrimitiveType
 	std::wstring wPath = wstring(path.begin(), path.end());
 	this->tex = TextureManager::get()->createTextureFromFile(wPath.c_str());
 
-	if (!this->tex)
+	/*if (!this->tex)
 		std::cout << "no texture\n";
 	else
-		std::cout << "texture loaded\n";
+		std::cout << "texture loaded\n";*/
 
 	Vector3D posList[] =
 	{
@@ -73,6 +73,11 @@ Plane::Plane(string name, void* shaderByteCode, size_t sizeShader, PrimitiveType
 		{posList[5], texCoordList[2]},
 		{posList[2], texCoordList[3]},
 
+		{posList[7], texCoordList[1]},
+		{posList[0], texCoordList[0]},
+		{posList[3], texCoordList[2]},
+		{posList[4], texCoordList[3]},
+
 		{posList[3], texCoordList[1]},
 		{posList[2], texCoordList[0]},
 		{posList[5], texCoordList[2]},
@@ -123,6 +128,7 @@ Plane::Plane(string name, void* shaderByteCode, size_t sizeShader, PrimitiveType
 
 Plane::~Plane()
 {
+	this->cb->release();
 	this->vbt->release();
 	this->ib->release();
 	GameObject::~GameObject();

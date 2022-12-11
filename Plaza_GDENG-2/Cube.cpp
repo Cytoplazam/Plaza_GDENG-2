@@ -10,10 +10,10 @@ Cube::Cube(string name, void* shaderByteCode, size_t sizeShader, PrimitiveType t
 	std::wstring wPath = wstring(path.begin(), path.end());
 	this->tex = TextureManager::get()->createTextureFromFile(wPath.c_str());
 	
-	if (!this->tex)
+	/*if (!this->tex)
 		std::cout << "no texture\n";
 	else
-		std::cout << "texture loaded\n";
+		std::cout << "texture loaded\n";*/
 	//mWorldCam.setTranslation(Vector3D(0, 0, -2));
 	
 	Vector3D posList[] =
@@ -123,6 +123,7 @@ Cube::Cube(string name, void* shaderByteCode, size_t sizeShader, PrimitiveType t
 
 Cube::~Cube()
 {
+	this->cb->release();
 	this->vbt->release();
 	this->ib->release();
 	GameObject::~GameObject();

@@ -11,16 +11,28 @@
 #include "Texture.h"
 #include "SceneCameraHandler.h"
 #include "PhysicsComponent.h"
+#include "GraphicsEngine.h"
 
 class Sphere: public GameObject
 {
+	struct vertex
+	{
+		Vector3D position;
+		Vector3D color;
+		Vector3D color1;
+	};
+
 public:
-	Sphere(string name, void* shaderByteCode, size_t sizeShader, PrimitiveType type);
+	Sphere(string name, void* shaderByteCode, size_t sizeShader, float radius, int stack, int sector, PrimitiveType type);
 	~Sphere();
 
 	void update(float deltaTime) override;
 	void draw(int w, int h, VertexShader* vs, PixelShader* ps, float forward, float right) override;
 	void setAnimSpeed(float speed);
+
+private:
+	std::vector<vertex> vertexList;
+	std::vector<unsigned int> indexList;
 
 protected:
 	VertexBuffer* vb;

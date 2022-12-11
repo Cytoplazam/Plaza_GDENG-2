@@ -27,7 +27,9 @@ public:
 		CAMERA,
 		CUBE, PCUBE, 
 		PLANE, PPLANE,
-		SPHERE, OBJ,
+		SPHERE, PSPHERE,
+		CAPSULE, PCAPSULE,
+		OBJ,
 
 	};
 
@@ -50,6 +52,9 @@ public:
 
 	void setRot(float x, float y, float z);
 	void setRot(Vector3D rot);
+
+	void changeName(string name);
+
 	Vector3D getLocalRotation();
 
 	PrimitiveType getType();

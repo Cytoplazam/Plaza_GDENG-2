@@ -66,6 +66,11 @@ PhysicsPlane::PhysicsPlane(string name, void* shaderByteCode, size_t sizeShader)
 		{posList[5], texCoordList[2]},
 		{posList[2], texCoordList[3]},
 
+		{posList[7], texCoordList[1]},
+		{posList[0], texCoordList[0]},
+		{posList[3], texCoordList[2]},
+		{posList[4], texCoordList[3]},
+
 		{posList[3], texCoordList[1]},
 		{posList[2], texCoordList[0]},
 		{posList[5], texCoordList[2]},
@@ -125,4 +130,8 @@ PhysicsPlane::PhysicsPlane(string name, void* shaderByteCode, size_t sizeShader)
 
 PhysicsPlane::~PhysicsPlane()
 {
+	this->cb->release();
+	this->vbt->release();
+	this->ib->release();
+	GameObject::~GameObject();
 }

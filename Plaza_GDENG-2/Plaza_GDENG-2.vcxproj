@@ -149,6 +149,7 @@
     <ClCompile Include="AUIScreen.cpp" />
     <ClCompile Include="BaseComponentSystem.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Capsule.cpp" />
     <ClCompile Include="ConstantBuffer.cpp" />
     <ClCompile Include="CreditsScreen.cpp" />
     <ClCompile Include="Cube.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
+    <ClCompile Include="HeirarchyScreen.cpp" />
     <ClCompile Include="imgui.cpp" />
     <ClCompile Include="imgui_demo.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
@@ -166,6 +168,7 @@
     <ClCompile Include="imgui_widgets.cpp" />
     <ClCompile Include="IndexBuffer.cpp" />
     <ClCompile Include="InputSystem.cpp" />
+    <ClCompile Include="InspectorScreen.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MenuScreen.cpp" />
     <ClCompile Include="Mesh.cpp" />
@@ -173,9 +176,11 @@
     <ClCompile Include="OBJ.cpp" />
     <ClCompile Include="OBJa.cpp" />
     <ClCompile Include="OBJb.cpp" />
+    <ClCompile Include="PhysicsCapsule.cpp" />
     <ClCompile Include="PhysicsComponent.cpp" />
     <ClCompile Include="PhysicsCube.cpp" />
     <ClCompile Include="PhysicsPlane.cpp" />
+    <ClCompile Include="PhysicsSphere.cpp" />
     <ClCompile Include="PhysicsSystem.cpp" />
     <ClCompile Include="PixelShader.cpp" />
     <ClCompile Include="Plane.cpp" />
@@ -205,6 +210,7 @@
     <ClInclude Include="AUIScreen.h" />
     <ClInclude Include="BaseComponentSystem.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Capsule.h" />
     <ClInclude Include="ConstantBuffer.h" />
     <ClInclude Include="CreditsScreen.h" />
     <ClInclude Include="Cube.h" />
@@ -214,6 +220,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="GraphicsEngine.h" />
+    <ClInclude Include="HeirarchyScreen.h" />
     <ClInclude Include="imconfig.h" />
     <ClInclude Include="imfilebrowser.h" />
     <ClInclude Include="imgui.h" />
@@ -226,6 +233,7 @@
     <ClInclude Include="IndexBuffer.h" />
     <ClInclude Include="InputListener.h" />
     <ClInclude Include="InputSystem.h" />
+    <ClInclude Include="InspectorScreen.h" />
     <ClInclude Include="Matrix4x4.h" />
     <ClInclude Include="MenuScreen.h" />
     <ClInclude Include="Mesh.h" />
@@ -233,9 +241,11 @@
     <ClInclude Include="OBJ.h" />
     <ClInclude Include="OBJa.h" />
     <ClInclude Include="OBJb.h" />
+    <ClInclude Include="PhysicsCapsule.h" />
     <ClInclude Include="PhysicsComponent.h" />
     <ClInclude Include="PhysicsCube.h" />
     <ClInclude Include="PhysicsPlane.h" />
+    <ClInclude Include="PhysicsSphere.h" />
     <ClInclude Include="PhysicsSystem.h" />
     <ClInclude Include="PixelShader.h" />
     <ClInclude Include="Plane.h" />

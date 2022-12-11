@@ -62,6 +62,22 @@ void SceneReader::readFromFile()
 		{
 			objectType = GameObject::PrimitiveType::PPLANE;
 		}
+		if (std::stoi(obj.child_value("Type")) == 5)
+		{
+			objectType = GameObject::PrimitiveType::SPHERE;
+		}
+		if (std::stoi(obj.child_value("Type")) == 6)
+		{
+			objectType = GameObject::PrimitiveType::PSPHERE;
+		}
+		if (std::stoi(obj.child_value("Type")) == 7)
+		{
+			objectType = GameObject::PrimitiveType::CAPSULE;
+		}
+		if (std::stoi(obj.child_value("Type")) == 8)
+		{
+			objectType = GameObject::PrimitiveType::PCAPSULE;
+		}
 
 		posX = std::stof(obj.child("Position").child_value("x"));
 		posY = std::stof(obj.child("Position").child_value("y"));
@@ -79,5 +95,6 @@ void SceneReader::readFromFile()
 		scale = Vector3D(scaleX, scaleY, scaleZ);
 
 		GameObjectManager::get()->createObjectFromFile(objectType, nullptr, 0, objectName, rot, pos, scale);
+		std::cout << "Created " << objectName << " from file.\n";
 	}
 }

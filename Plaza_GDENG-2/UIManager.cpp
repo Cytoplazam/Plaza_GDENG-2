@@ -31,6 +31,14 @@ UIManager::UIManager(HWND hwnd)
 	StateScreen* stateScreen = new StateScreen();
 	this->uiTable[uiNames.STATE_SCREEN] = stateScreen;
 	this->uiList.push_back(stateScreen);
+
+	InspectorScreen* inspectorScreen = new InspectorScreen();
+	this->uiTable[uiNames.INSPECTOR_SCREEN] = inspectorScreen;
+	this->uiList.push_back(inspectorScreen);
+
+	HeirarchyScreen* hierarchyScreen = new HeirarchyScreen();
+	this->uiTable[uiNames.HIERARCHY_SCREEN] = hierarchyScreen;
+	this->uiList.push_back(hierarchyScreen);
 }
 
 UIManager::~UIManager()

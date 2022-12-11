@@ -3,11 +3,16 @@
 #include "GraphicsEngine.h"
 #include "Cube.h"
 #include "Plane.h"
+#include "Sphere.h"
+#include "Capsule.h"
+#include "PhysicsSphere.h"
 #include "PhysicsCube.h"
 #include "PhysicsPlane.h"
+#include "PhysicsCapsule.h"
 #include "Vector3D.h"
 #include "EngineTime.h"
 #include "SceneWriter.h"
+#include "HeirarchyScreen.h"
 #include <unordered_map>
 
 class GameObjectManager
@@ -21,7 +26,9 @@ public:
 	{
 		CUBE, PCUBE,
 		PLANE, PPLANE,
-		SPHERE, OBJ
+		SPHERE, PSPHERE,
+		CAPSULE, PCAPSULE,
+		OBJ
 	};
 
 	static GameObjectManager* get();
@@ -37,7 +44,6 @@ public:
 	void createObjectFromFile(GameObject::PrimitiveType type, void* shaderByteCode, size_t sizeShader, string name, Vector3D rot, Vector3D pos, Vector3D scale);
 	void delObject(GameObject* gameObj);
 	void delObjectByName(string name);
-	void setSelectedObject(string name);
 	void setSelectedObject(GameObject* gameObj);
 	GameObject* getSelectedObject();
 
@@ -56,10 +62,15 @@ private:
 	std::vector<Plane*> Planes;
 	std::vector<PhysicsPlane*> pPlanes;
 	std::vector<GameObject*> objects;
+	std::vector<Sphere*> spheres;
+	std::vector<PhysicsSphere*> pSpheres;
+	std::vector<Capsule*> capsules;
+	std::vector<PhysicsCapsule*> pCapsules;
 
 	GameObject* selectedObj;
 
 	VertexShader* m_vst;
 	PixelShader* m_pst;
 	friend class SceneWriter;
+	friend class HeirarchyScreen;
 };
