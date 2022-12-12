@@ -36,7 +36,6 @@ void AppWindow::onCreate()
 	Window::onCreate();
 	InputSystem::get()->addListener(this);
 	GameObjectManager::init();
-	//SceneWriter::init();
 	BaseComponentSystem::init();
 	TextureManager::init();
 	MeshManager::init();
@@ -408,7 +407,7 @@ void AppWindow::onUpdate()
 	Window::onUpdate();
 	InputSystem::get()->update();
 	//InputSystem::get()->showCursor(false);
-	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain, 0, 0, 0.5, 1);
+	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain, 0.3, 0.5, 0.3, 1);
 
 	RECT rc = this->getClientWindowRect();
 	float width = rc.right - rc.left;
@@ -454,51 +453,7 @@ void AppWindow::onUpdate()
 	//GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleList(m_vb->getSizeVertexList(), 0);
 	//GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleStrip(m_vb->getSizeVertexList(), 0);
 
-	for (int i = 0; i < this->cubes.size(); i++)
-	{
-		//this->cubes[i]->setScale(Vector3D(scale, scale, scale));
-		//this->cubes[i]->setRot(Vector3D(rotX, rotY, 0.0f));
-		//this->cubes[i]->setAnimSpeed(1.0f);
-		//this->cubes[i]->update(EngineTime::getDeltaTime());
-		//this->cubes[i]->draw(width, height, this->m_vst, this->m_pst, forward, right);
-	}
-
 	GameObjectManager::get()->renderAll(height, width, forward, right);
-
-	for (int i = 0; i < this->objs.size(); i++)
-	{
-		//this->cubes[i]->setScale(Vector3D(scale, scale, scale));
-		//this->cubes[i]->setRot(Vector3D(rotX, rotY, 0.0f));
-		//this->objs[i]->setAnimSpeed(1.0f);
-		//this->objs[i]->update(EngineTime::getDeltaTime());
-		//this->objs[i]->draw(width, height, this->m_vst, this->m_pst, forward, right);
-	}
-
-	for (int i = 0; i < this->objas.size(); i++)
-	{
-		//this->cubes[i]->setScale(Vector3D(scale, scale, scale));
-		//this->cubes[i]->setRot(Vector3D(rotX, rotY, 0.0f));
-		//this->objs[i]->setAnimSpeed(1.0f);
-		//this->objs[i]->update(EngineTime::getDeltaTime());
-		//this->objas[i]->draw(width, height, this->m_vst, this->m_pst, forward, right);
-	}
-
-	for (int i = 0; i < this->objbs.size(); i++)
-	{
-		//this->cubes[i]->setScale(Vector3D(scale, scale, scale));
-		//this->cubes[i]->setRot(Vector3D(rotX, rotY, 0.0f));
-		//this->objs[i]->setAnimSpeed(1.0f);
-		//this->objs[i]->update(EngineTime::getDeltaTime());
-		//this->objbs[i]->draw(width, height, this->m_vst, this->m_pst, forward, right);
-	}
-
-	for (int i = 0; i < this->planes.size(); i++)
-	{
-		//this->planes[i]->setScale(Vector3D(scale * 3.0f, scale * 0.1, scale * 3.0f));
-		//this->planes[i]->setPos(Vector3D(0.0f, 0.0f, 0.0f));
-		//this->planes[i]->setRot(Vector3D(rotX, rotY, 2.0f));
-		//this->planes[i]->draw(width, height, this->m_vst, this->m_pst, forward, right);
-	}
 	
 	SceneCameraHandler::get()->update();
 
@@ -520,7 +475,6 @@ void AppWindow::onDestroy()
 	TextureManager::get()->destroy();
 	BaseComponentSystem::get()->destroy();
 	GameObjectManager::get()->destroy();
-	//SceneWriter::get()->destroy();
 	UIManager::get()->destroy();
 }
 

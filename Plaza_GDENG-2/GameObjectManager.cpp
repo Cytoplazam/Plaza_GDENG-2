@@ -218,6 +218,57 @@ void GameObjectManager::createObject(PrimitiveType type, void* shaderByteCode, s
 			this->pCapsules.push_back(pCapsule);
 		}
 	}
+	if (type == PrimitiveType::TEAPOT)
+	{
+		for (int i = 0; i < 1; i++)
+		{
+			string name;
+
+			if (this->teapots.size() > 0)
+				name = "Teapot(" + to_string(this->pCapsules.size()) + ")";
+			else
+				name = "Teapot";
+
+			OBJ* teapot = new OBJ(name, shaderByteCode, sizeShader);
+
+			this->addObject(teapot);
+			this->teapots.push_back(teapot);
+		}
+	}
+	if (type == PrimitiveType::BUNNY)
+	{
+		for (int i = 0; i < 1; i++)
+		{
+			string name;
+
+			if (this->bunnies.size() > 0)
+				name = "Bunny(" + to_string(this->bunnies.size()) + ")";
+			else
+				name = "Bunny";
+
+			OBJb* bunny = new OBJb(name, shaderByteCode, sizeShader);
+
+			this->addObject(bunny);
+			this->bunnies.push_back(bunny);
+		}
+	}
+	if (type == PrimitiveType::ARMADILLO)
+	{
+		for (int i = 0; i < 1; i++)
+		{
+			string name;
+
+			if (this->armadillos.size() > 0)
+				name = "Armadillo(" + to_string(this->armadillos.size()) + ")";
+			else
+				name = "Armadillo";
+
+			OBJa* armadillo = new OBJa(name, shaderByteCode, sizeShader);
+
+			this->addObject(armadillo);
+			this->armadillos.push_back(armadillo);
+		}
+	}
 	
 
 	GraphicsEngine::get()->compilePixelShader(L"PixelShaderTex.hlsl", "psmain", &shaderByteCode, &sizeShader);

@@ -55,7 +55,7 @@ void MenuScreen::drawUI()
 			}
 			ImGui::EndMenu();
 		}
-		if (ImGui::BeginMenu("Primitives"))
+		if (ImGui::BeginMenu("Create Primitive"))
 		{
 			if (ImGui::MenuItem("Cube"))
 			{
@@ -88,6 +88,22 @@ void MenuScreen::drawUI()
 			if (ImGui::MenuItem("Physics Capsule"))
 			{
 				GameObjectManager::get()->createObject(GameObjectManager::PCAPSULE, nullptr, 0);
+			}
+			if (ImGui::BeginMenu("Mesh"))
+			{
+				if (ImGui::MenuItem("Teapot"))
+				{
+					GameObjectManager::get()->createObject(GameObjectManager::TEAPOT, nullptr, 0);
+				}
+				if (ImGui::MenuItem("Bunny"))
+				{
+					GameObjectManager::get()->createObject(GameObjectManager::BUNNY, nullptr, 0);
+				}
+				if (ImGui::MenuItem("Armadillo"))
+				{
+					GameObjectManager::get()->createObject(GameObjectManager::ARMADILLO, nullptr, 0);
+				}
+				ImGui::EndMenu();
 			}
 			ImGui::EndMenu();
 		}

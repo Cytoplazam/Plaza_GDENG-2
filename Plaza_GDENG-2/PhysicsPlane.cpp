@@ -1,6 +1,6 @@
 #include "PhysicsPlane.h"
 
-PhysicsPlane::PhysicsPlane(string name, void* shaderByteCode, size_t sizeShader): Cube(name, shaderByteCode, sizeShader, PrimitiveType::PLANE)
+PhysicsPlane::PhysicsPlane(string name, void* shaderByteCode, size_t sizeShader): Cube(name, shaderByteCode, sizeShader, PrimitiveType::PPLANE)
 {
 	std::string path = "Assets/Textures/wood.jpg";
 	std::wstring wPath = wstring(path.begin(), path.end());

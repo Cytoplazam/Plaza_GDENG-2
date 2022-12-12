@@ -9,6 +9,9 @@
 #include "PhysicsCube.h"
 #include "PhysicsPlane.h"
 #include "PhysicsCapsule.h"
+#include "OBJ.h";
+#include "OBJa.h";
+#include "OBJb.h";
 #include "Vector3D.h"
 #include "EngineTime.h"
 #include "SceneWriter.h"
@@ -28,7 +31,7 @@ public:
 		PLANE, PPLANE,
 		SPHERE, PSPHERE,
 		CAPSULE, PCAPSULE,
-		OBJ
+		TEAPOT, BUNNY, ARMADILLO
 	};
 
 	static GameObjectManager* get();
@@ -66,6 +69,9 @@ private:
 	std::vector<PhysicsSphere*> pSpheres;
 	std::vector<Capsule*> capsules;
 	std::vector<PhysicsCapsule*> pCapsules;
+	std::vector<OBJ*> teapots;
+	std::vector<OBJa*> armadillos;
+	std::vector<OBJb*> bunnies;
 
 	GameObject* selectedObj;
 

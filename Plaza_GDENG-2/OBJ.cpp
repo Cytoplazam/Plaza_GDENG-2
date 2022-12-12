@@ -4,7 +4,7 @@
 #include "SwapChain.h"
 #include <iostream>
 
-OBJ::OBJ(string name, void* shaderByteCode, size_t sizeShader) :GameObject(name, PrimitiveType::OBJ)
+OBJ::OBJ(string name, void* shaderByteCode, size_t sizeShader) :GameObject(name, PrimitiveType::TEAPOT)
 {
 	std::string path = "Assets/Meshes/teapot.obj";
 	std::wstring wPath = wstring(path.begin(), path.end());

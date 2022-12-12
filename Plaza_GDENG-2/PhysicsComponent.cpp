@@ -9,9 +9,23 @@ PhysicsComponent::PhysicsComponent(String name, GameObject* owner) : AComponent(
     Vector3D scale = this->getOwner()->getLocalScale();
     Transform transform;
     transform.setFromOpenGL(this->getOwner()->getPhysicsLocalMatrix());
+    SphereShape* sphereshape = physicsCommon->createSphereShape(1);
     BoxShape* boxshape = physicsCommon->createBoxShape(Vector3(scale.m_x / 2, scale.m_y / 2, scale.m_z / 2));
+    CapsuleShape* capsuleshape = physicsCommon->createCapsuleShape(1, 2);
     this->rigidbody = physicsWorld->createRigidBody(transform);
-    this->rigidbody->addCollider(boxshape, transform);
+    if (owner->getType() == GameObject::PrimitiveType::PCUBE || owner->getType() == GameObject::PrimitiveType::PPLANE || owner->getType() == GameObject::PrimitiveType::CUBE || owner->getType() == GameObject::PrimitiveType::PLANE)
+    {
+        this->rigidbody->addCollider(boxshape, transform);
+    }
+    else if (owner->getType() == GameObject::PrimitiveType::PSPHERE || owner->getType() == GameObject::PrimitiveType::SPHERE)
+    {
+        this->rigidbody->addCollider(sphereshape, transform);
+    }
+    else if (owner->getType() == GameObject::PrimitiveType::PCAPSULE || owner->getType() == GameObject::PrimitiveType::CAPSULE)
+    {
+        this->rigidbody->addCollider(capsuleshape, transform);
+    }
+    //this->rigidbody->addCollider(boxshape, transform);
     this->rigidbody->updateMassPropertiesFromColliders();
     this->rigidbody->setMass(this->mass);
     this->rigidbody->setType(BodyType::DYNAMIC);

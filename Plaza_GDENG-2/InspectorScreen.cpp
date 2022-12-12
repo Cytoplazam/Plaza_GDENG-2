@@ -39,6 +39,12 @@ void InspectorScreen::drawUI()
 			/*if (ImGui::Button("Delete Object"))
 			{
 				GameObjectManager::get()->delObject(GameObjectManager::get()->getSelectedObject());
+				GameObjectManager::get()->setSelectedObject(NULL);
+			}*/
+			/*if (ImGui::Button("Attach Rigidody"))
+			{
+				GameObjectManager::get()->getSelectedObject()->ComputeLocalMatrix();
+				GameObjectManager::get()->getSelectedObject()->attachComponent(new PhysicsComponent(("PhysicsComponent"), GameObjectManager::get()->getSelectedObject()));
 			}*/
 		}
 	}
