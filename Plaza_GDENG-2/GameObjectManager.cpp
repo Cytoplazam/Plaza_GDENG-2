@@ -414,6 +414,54 @@ void GameObjectManager::createObjectFromFile(GameObject::PrimitiveType type, voi
 		this->addObject(pCapsule);
 		this->pCapsules.push_back(pCapsule);
 	}
+	if (type == GameObject::PrimitiveType::TEAPOT)
+	{
+		string tempName;
+
+		if (this->teapots.size() > 0)
+			tempName = "Teapot(" + to_string(this->teapots.size()) + ")";
+		else
+			tempName = "Teapot";
+
+		OBJ* teapot = new OBJ(tempName, shaderByteCode, sizeShader);
+		teapot->setScale(scale);
+		teapot->setPos(pos);
+		teapot->setRot(rot);
+		this->addObject(teapot);
+		this->teapots.push_back(teapot);
+	}
+	if (type == GameObject::PrimitiveType::BUNNY)
+	{
+		string tempName;
+
+		if (this->bunnies.size() > 0)
+			tempName = "Bunny(" + to_string(this->bunnies.size()) + ")";
+		else
+			tempName = "Bunny";
+
+		OBJb* bunny = new OBJb(tempName, shaderByteCode, sizeShader);
+		bunny->setScale(scale);
+		bunny->setPos(pos);
+		bunny->setRot(rot);
+		this->addObject(bunny);
+		this->bunnies.push_back(bunny);
+	}
+	if (type == GameObject::PrimitiveType::ARMADILLO)
+	{
+		string tempName;
+
+		if (this->armadillos.size() > 0)
+			tempName = "Armadillo(" + to_string(this->armadillos.size()) + ")";
+		else
+			tempName = "Armadillo";
+
+		OBJa* armadillo = new OBJa(tempName, shaderByteCode, sizeShader);
+		armadillo->setScale(scale);
+		armadillo->setPos(pos);
+		armadillo->setRot(rot);
+		this->addObject(armadillo);
+		this->armadillos.push_back(armadillo);
+	}
 
 	GraphicsEngine::get()->compilePixelShader(L"PixelShaderTex.hlsl", "psmain", &shaderByteCode, &sizeShader);
 
