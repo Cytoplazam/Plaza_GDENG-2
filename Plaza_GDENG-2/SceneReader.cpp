@@ -78,6 +78,18 @@ void SceneReader::readFromFile()
 		{
 			objectType = GameObject::PrimitiveType::PCAPSULE;
 		}
+		if (std::stoi(obj.child_value("Type")) == 9)
+		{
+			objectType = GameObject::PrimitiveType::TEAPOT;
+		}
+		if (std::stoi(obj.child_value("Type")) == 10)
+		{
+			objectType = GameObject::PrimitiveType::BUNNY;
+		}
+		if (std::stoi(obj.child_value("Type")) == 11)
+		{
+			objectType = GameObject::PrimitiveType::ARMADILLO;
+		}
 
 		posX = std::stof(obj.child("Position").child_value("x"));
 		posY = std::stof(obj.child("Position").child_value("y"));
