@@ -35,9 +35,13 @@ public class ObjectCreator : MonoBehaviour
     public void SaveXML()
     {
         GameObject[] objs = GameObject.FindGameObjectsWithTag("EditorOnly");
+        GameObject[] objsUnity = GameObject.FindGameObjectsWithTag("Finish");
+        //Debug.Log(objs.Length);
 
         XmlDocument saveFile = new XmlDocument();
 
+        if (objs.Length == 0)
+            objs = objsUnity;
         XmlNode root = saveFile.CreateElement("GameObjects");
         saveFile.AppendChild(root);
 
